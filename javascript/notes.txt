@@ -1,0 +1,124 @@
+Javascript
+=================
+- Programming language
+- to perform logical operations and provide behaviour
+- To execute Javascript we need a runtime 
+- Node js is used to provide this runtime environment
+- Runtime environment includes javascript engine, it compiles the code and execute it.
+- Runtime is built in with the web browser(V8 for chrome, spider monkey for mozilla).
+- Nodejs also uses V8 javascript engine.
+
+
+
+node -v to check the node version.
+
+If you don't see version download the nodejs lts package from the website
+and install it.
+
+
+Data Types
+===========
+
+1. Primitive data Types:
+ -String
+ -number
+ -boolean
+ -undefined - variable declared but no value assigned
+ -null - no value at all
+2. Reference Types:
+ -Object: js Object
+          array
+
+** Javascript is a dynamically typed language: we don't have to specify the 
+datatype of the value that we need to store. Javascript will automatically recognize and assign the type.
+
+** var keyword is used to create a variable.
+
+Basic Commands
+----------------
+1. console.log() - to print output in terminal
+2. var - to declare a variable to hold a value
+3. typeof() - return the datatype of the specific variable/value
+
+Template Literals
+-----------------
+- Used to append dynamic data with String
+    syntax: `${variable}`
+
+Operators
+============
+
+Assignment operator
+-------------------
+= to assign values from right to left
+    eg: var num = 5;
+
+Arithematic Operators
+---------------------
++,-,*,/,% 
+
+Comparison Operators
+--------------------
+== and === 
+== only checks the value
+=== checks the value and datatype
+
+>
+<
+>=
+<=
+!= value only
+!== type and value
+
+Logical Operators
+-----------------
+&&
+||
+!
+
+Increment and decrement operator
+--------------------------------
+++
+--
+
+String concatenation
+--------------------
++ is used for string concatenation
+
+
+
+
+
+
+Javascript Objects
+====================
+incomplete
+----------
+
+
+Object.seal()
+-----------
+This method is used to control the mutability of the object. 
+- It prevent adding new properties or removing existing properties. 
+- It allows modification for values of existing properties.
+- It will not throw error when we try to add new properties.
+
+Object.freeze()
+---------------
+This is also used to control the mutability of the object
+- It prevents adding, removing and modifying the properties.
+- This also doesnot throw any error.
+
+Array of Objects
+=================
+Each element in an array is an object.
+
+eg:- var student=[
+    {name:"john",branch:"cse"},
+    {name:"doe",branch:"ece"}
+]
+
+
+
+
+
