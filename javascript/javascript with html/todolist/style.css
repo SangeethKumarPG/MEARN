@@ -1,0 +1,19 @@
+.heading{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10%;
+}
+
+.input-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8%;
+    margin-left: 8%;
+}
+
+.result-container{
+    margin-top: 8%;
+    margin-left: 8%;
+}

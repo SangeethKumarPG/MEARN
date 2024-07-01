@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="main-heading">MEARN Course</h1>
+    <h3>Topics</h3>
+    <h6 class="items">MongoDB</h6>
+    <h6 class="items">Express</h6>
+    <h6 class="items">Angular</h6>
+    <h6 class="items">React</h6>
+    <h6 class="items">Node js</h6>
+</body>
+<script>
+    //1) Change color of h1 by id to red
+    //2) Change the color of h3 by tagName
+    // 3) change the color of h6 by class name 
+
+    mainHeading = document.getElementById("main-heading");
+    mainHeading.style.color="red";
+
+    topics = document.getElementsByTagName("h3");
+    Array.from(topics).map(item=>item.style.color="blue");
+
+    items = document.getElementsByClassName("items");
+    Array.from(items).map(x=>x.style.color="goldenrod");
+
+</script>
+</html>

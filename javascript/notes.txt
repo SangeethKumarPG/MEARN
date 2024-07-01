@@ -119,6 +119,200 @@ eg:- var student=[
 ]
 
 
+eval()
+=======
+Used to evaluate or execute a string in javascript.
+var result = eval("3+6");
+console.log(result); 
+gives 9
+
+Exception Handling
+==================
+
+Runtime errors are called exceptions.
+-try-catch block is used to handle runtime errors.
+-try : code that might cause errors
+-catch : what to do if error occurs
+-finally : not mandatory. control will come to this block in both the cases.
+
+Spread and rest operator(...)
+=============================
+spread operator: The spread syntax expands iterables(array or objects) into individual elements where it is used.
+eg: var array1 = [1,2,3,4]
+var array2 = [...array1, 5,6,7,8]
+
+used for array and object concatenation.
+
+var obj1 = {a:1, b:2};
+var obj2 = {...obj1, c:3,d:4}
+
+Rest operator : Mainly used for passing arguments to a function. When passing arguments to a function we are not sure about how
+many arguments the function is expecting.
+
+syntax: function function_name(...variable){
+
+}
+
+The variable is taken as array.
+
+Array Destructuring
+====================
+Unpacking array values to store it into variables.
+
+var array = [1,2,3,4]
+let [a,b,c,d] = array
+if you only need one value just define one element inside []
+var [first] = array;
+
+if you want the last value
+use
+var [,,,last] = array;
+
+use , to skip values.
+
+Object Destructuring
+=====================
+it is used to unpack properties value into variable. variable must be keyname.
+
+var obj = {
+    first:1,
+    sencond:2,
+    third:3
+};
+
+let {first} = obj;
+console.log(first);
+
+OOPS
+=======
+
+Object oriented programming system
+
+procedural programming: uses functions
+object oriented programming: uses classes, objects, methods, properties and constructor.
+
+class: Class is a container that holds related methods, properties and constructor
+class acts as blueprint for creating objects.
+function inside a class is called method. Function keyword is not needed to create method.
+
+properties: variables inside a class is called properties. var, let, const keywords are not needed to define properties.
+
+Object: instance of a class. It is created from class. 
+
+constructor: it is a function used to initialize values to properties.
+this keyword is used to access the methods and properties inside a class. It is called instance variable.
+syntax:
+class ClassName{
+    properties,
+    constructor,
+    methods
+}
+
+eg: class Student{
+    name;
+    age;
+    constructor(){
+        this.name="john";
+        this.age=24;
+    }
+
+    printDetails(){
+        console.log("Student name: ",this.name);
+        console.log("Student age: ",this.age);
+    }
+}
+
+if constructor is expecting some arguments we need to pass these arguments while crating these objects.
+If any methods in the class expect some arguments, we must pass these arguments when calling these methods.
+
+Pillars of OOPS
+===============
+1) inheritance: extends keyword
+2) polymorphism:
+3) encapsulation: through private, public, protected. default is public. javascript doesnotsupport access modifier.
+4) abstraction
+
+
+Javascipt with HTML
+===================
+DOM (Document Object Model)
+---------------------------
+- while browser loads a html page it create a tree like structure with the containing html elements.
+ this is called DOM. 
+
+Accessing HTML elements
+-----------------------
+1) getElementsByTagName('tag')- returns a collection. collection is a datatype similar to an array. we
+   have to convert the collection to array using Array.from(collection_name). After this map the required operations
+   using map function.
+   eg:- Array.from(collection_name).map(item=>item.style.color="green");
+
+2) getElementById('id') - It returns that specific element.
+    example: x = document.getElementById('mainheading');
+            x.style.color="red";
+    if attributes have hyphen in between use camel case.
+
+    we can also use mainheading.style.color="red". Like this we can directly access the elements with id.
+
+3) getElementsByClassName('class') - It returns a collection. We need to convert this collection to an array and apply the necessary function
+    using .map() or forEach()
+
+4) document.querySelector('tagname/#id/.class_name')- It returns the specific html element.
+    It only returns the first html element that matches the condition. We can use any query to get the particular element.
+
+5) document.querySelectorAll('tagname/#id/.class_name') - It returns a nodelist which needs to be converted to an array for using it.
+    It returns all the matching html elements.
+    eg: x = document.querySelectorAll('.item');
+        Array.from(x).map(item=>item.style.backgroundColor="orange");
+
+Binding Elemets to HTML
+=======================
+.innerHTML - get the content of the tag. To change the text of a tag we can use
+    id.innerHTML = "Sample Text";
+
+EVENTS
+======
+Action that performed by user that lead to dom updation.
+    eg:button click, mouse hover, keydown etc.
+
+we can also pass arguments to functions with these event handling functions.
+
+Local Storage and Session Storage
+=================================
+1) Local Storage:
+ It is the browser memory used to store data permanently in a browser.
+ Data persists even if we close the tab, close the browser, shut down the system.
+ Value stored as key value pairs. Key and value must be strings.
+ JSON.stringify() is used to convert objects to string.
+ JSON.parse() used to convert string to original object.
+
+ Operations on Local Storage
+ ---------------------------
+ localStorage.setItem("key":"value") - to store an item into local storage.
+ localStorage.getItem("key") - to retrieve the value corresponding to the key from the local storage.
+ localStorage.removeItem("key") - to delete an item from the local storage.
+
+ Size limit around 5MB. 
+ Used for storing data that needs to persist permanently.
+ To store user preferences, settings, themes, user authentication tokens.
+
+Session storage
+---------------
+It is also browser memory.
+Data stored in session is only available for that particular usage session.
+It is deleted when user closes the tab or browser window.
+It's size is around 5MB.
+
+Operations on session storage
+-----------------------------
+sessionStorage.setItem("key":"value") - to store an item into session storage.
+sessionStorage.getItem("key") - to retrieve the value corresponding to the key from the session storage.
+sessionStorage.removeItem("key") - to delete an item from the session storage.
+
+used to store temporary data that should be available as long as the user is on the current page.
+
+NOTE: If we need to store objects we need to use JSON.stringify(object_name).
+
 
 
 
