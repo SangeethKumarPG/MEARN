@@ -55,7 +55,7 @@
                 <br>
                 <div class="submission-container">
                     <button type="button" class="btn btn-primary" id="submit" onclick="obj.registerUser()">Submit</button>
-                    <button class="btn btn-warning" id="reset">reset</button>
+                    <button class="btn btn-warning" id="reset" type="button" onclick="clearFields()">reset</button>
                 </div>
                 
             </form>
@@ -64,4 +64,11 @@
     </div>
 </body>
 <script src="index.js"></script>
+<script>
+    function clearFields(){
+        username.value="";
+        emailid.value = "";
+        userpassword.value = "";
+    }
+</script>
 </html>
