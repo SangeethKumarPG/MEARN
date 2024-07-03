@@ -1,0 +1,37 @@
+API
+===
+- Application Programming Interface.
+Mechanism that enable front-end and backend to communicate with each other.
+It can also be used for connecting the backend with any other application.
+API's must follow a set of rules
+
+Two types of API
+----------------
+1) Public API: Freely available and we can directly use them
+2) Private API's: Internal to a company or organisation. We cannot use it directly. We need to use authentication tokens to access them.
+
+Authentication vs Authorization
+--------------------------------
+Authentication verifies the users credentials. Authorization checks weather the authenticated user has the permission to
+access the information.
+
+Authentication is done through username and password.
+Authorization is implemented through roles and usergroups.
+
+
+URL
+---
+Uniform Resource Location: address of a location where specific resource is stored in internet.
+
+DNS
+---
+Domain Name Server: Used for domain name to IP address mapping. 
+
+Protocols:
+----------
+Set of rules that need to be considered while sending and recieving data 
+
+Differrent Types of Communication Protocols
+-------------------------------------------
+HTTP: Most commonly used. 
+HTTPS: secured(encrypted) HTTP.
