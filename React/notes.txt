@@ -32,3 +32,17 @@ Features of React
 - Data sharing is uni-directional(from parent to child component).
 - Language used is JSX (combination of html css and js). File extensions for components we are generally using (.jsx).
 - transpiling : process of converting jsx into javascript, css and html. babel is a compiler that performs the transpiling. 
+
+How to create a react application?
+==================================
+step 1: We need to install an npm package create-react-app
+        npm install -g create-react-app (to install create-react-app globally)
+        npm install create-react-app (to install only in the current folder).
+
+step 2: by using the above installed package create a react app
+        npx create-react-app appname
+        
+step 3: navigate to the application folder and start the application using
+        npm start 
+        By default the react application runs in http://localhost:3000/
+
