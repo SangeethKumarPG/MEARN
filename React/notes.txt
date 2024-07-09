@@ -1,0 +1,34 @@
+React JS
+---------
+Front-end technology used to create User Interface. 
+It is a javascript library. It make use of multiple javascript libraries to create front-end.
+libraries - predefined code to do a particular task.
+Framework - set of libraries. Prebuilt set of tools libraries and conventions that provide a structured way to
+            develop a software application.
+
+Features of React
+-----------------
+- Used to create front-end 
+- SPA (Single Page Application): It is a web application that  provide a seamless, dynamic user experience without the need to reload the entire,
+    page from the server. In react we only have one html file called index.html file inside public folder. Browser only loads this html page, 
+    while the user requests other webpages, only the content inside this index.html page reloads.
+
+    In traditional web-application we have multiple html pages. for each iteration, the application typically loads a new page from the server
+    resulting in full page refresh.
+
+- React uses virtual DOM. 
+    Real DOM - the actual representation of the webpage that browser renders.
+    Virtual DOM - Lightweight representation of the real dom. 
+
+    How react uses virtual DOM? 
+        While a react application loads/starts, initially it create Real DOM along with Virtual DOM. 
+        If any events happend and changes the html element, it creates a new virtual dom, then compares the newly created virtual dom with,
+        previous one and finds the difference. Then react updates only the changed html elements based on the identified differences.
+
+    Diffing: Process of compairing new virtual dom with the previous virtual dom to find the difference.
+    Reconcillation: After diffing react update the real dom with only the changes. 
+
+- React js is fully component based. 
+- Data sharing is uni-directional(from parent to child component).
+- Language used is JSX (combination of html css and js). File extensions for components we are generally using (.jsx).
+- transpiling : process of converting jsx into javascript, css and html. babel is a compiler that performs the transpiling. 
