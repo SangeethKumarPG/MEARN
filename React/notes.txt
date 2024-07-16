@@ -46,3 +46,156 @@ step 3: navigate to the application folder and start the application using
         npm start 
         By default the react application runs in http://localhost:3000/
 
+
+npm: node package manager
+npx: node package execute
+
+Files and folders in React Application
+--------------------------------------
+README.md : Details of the project, how to run the project etc.
+
+package.json : Heart of the react project. It holds the npm configuration. it includes all the installed libraries/node modules.
+                If we install a new module, it will automatically get updated in package.json. 
+                also, it includes scripts, to run the application, test the application, build the application, execute.
+
+package-lock.json : More detailed version of package.json file with all details of the libraries and modules with exact version number.
+
+.gitignore : Used to add files or folders which should be excluded from git version control. By default the node_modules folder and some other files are present here.
+
+node_modules : Folder which stores all the necessary libraries for the project. While pushing the code into version control like git we exclude this folder. When a new user
+                clones the project the node modules will not be there and the project will not run. So for this we must run "npm install" to download and install the necessary 
+                node modules. The dependencies present in the package.json will be used for downloading node_modules. 
+
+public : Folder for storing files that can be accessed throughout the project. index.html is present here. index.html is the only file that the browser loads while running the react app.
+        - in index.html file there is one div with id root. in that div we are binding the page/data.
+        - <noscript> tag is used to pass information to developer about the page.
+
+src: 
+    index.js - Entry point to the application. here we import multiple dependencies/libraries. inside the index.js we access the root div from index.html by using
+                cont root = document.getElementById("root") and then binds the app component to the root.
+
+    app.js - this is the parent component that loads first in the index.js file.
+
+            components: Basic unit of the react application. we can split the entire react application into small components which can be managed easier. Like header, footer, homepage.
+                        While creating component, it should start with capital letter. we are using .jsx extension commonly for creating components. 
+
+NOTE
+====
+In react if we want to apply class for elements, we must use className.
+In return() of a component only 1 parent div should be there.
+We can also use empty fragments (<>....</>) also instead of parent div tag. 
+return(): Write the code which the user sees on the screen. It should contain only jsx code. 
+
+The name of the function should be same as the component name and must start with capital letter.
+After creating the component function we must export it using
+export default Component;
+
+inside the App.js we must import the component.
+import Component from './Component'
+
+To add the component place it inside the return with a self closing tag like
+return(
+    <div>
+        <Component/>
+    </div>
+)
+
+ES7+React/Redux extension for vscode. 
+use rfce to create a react functional component with export.
+
+Basic Structure of a Functional Component
+-----------------------------------------
+function ComponentName(){
+    //javascript code
+    return(
+        //jsx code
+        <>
+            Components to be the returned.
+        </>
+    );
+}
+
+export default ComponentName;
+
+Dynamic Data binding
+--------------------
+{} - is used to bind data dynamically. 
+
+Differrence between app.css and index.css?
+-----------------------------------------
+index.css is the global style sheet whatever the styles mentioned in index.css file will affect 
+throughout application. Like browser style setting, body, styles etc.
+
+App.css : This stylesheet only belongs to app component and its immediate children. The styles mentioned in 
+    app.css will only affect the html elements belonging to the App component and immediate children.
+
+
+Data Transfer Between Components
+================================
+In react data transfer is uni directional, i.e from parent to child. 
+
+Props
+------
+- It is used to send data from parent to child component.
+- We pass the data from parent component to child component in
+    keyName = value inside the parent component tag. 
+- To access the value in the child component we must pass an argument to the Child Component function to accept an object.
+    From this object we must access this using . operator or using object destructuring.
+
+Class Components
+================
+Here we are using class to create component. By default a javascript class doesnot have the properties of react. For this we need to import
+React class from "react". Then make the class you created a child class of React.Component class.
+Inside the class define the render() method. inside the render() method define the return. Note that class component name must start with capital letter.
+
+To access props from the class component pass the props as key value pair from the Component Tag. Inisde the class inside the render method
+use 
+const {key} = this.props; 
+or 
+const key = this.props.key;
+
+Styling
+-------
+1) inline
+2) External
+3) modules
+
+1) inline
+----------
+inside {} pass it as an object.
+style = {{property1:"value", property2:"value"}}
+if properties have - in them use camel case letters.
+eg: background-color is defined as backgroundColor.
+
+We can also define a const, or var inside the component function or class.
+eg:
+divStyle = {
+    backgroundColor : 'grey',
+    textAlign:'center',
+    margin:'40px',
+    padding: '10px'
+  };
+
+  to apply style use <div style={this.divStyle}>
+  
+
+2) External
+-----------
+create a .css file.
+import the css file into the corresponding component.
+inside the css file there is no need for export.
+
+3) Modules 
+----------
+file extension : file_name.module.css
+ - created inside src folder (outside the components )
+ - We can store the imported module into a variable and style the elements.
+ -  Can be accessed throughout the project
+
+Events 
+=======
+Actions performed by the user which leads to some updates in DOM.
+eg: button click, mouse hover, keydown etc.
+
+
+

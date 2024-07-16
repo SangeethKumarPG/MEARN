@@ -1,0 +1,73 @@
+body{
+    background-image: url("https://img.freepik.com/free-vector/cerulean-blue-curve-frame-template-vector_53876-136095.jpg?w=900&t=st=1720640686~exp=1720641286~hmac=9018ea1de594df463c3fdcb05570bacdf47125ac4a53c60085609a4b7d49ef30");
+    background-size: cover;
+}
+.container{
+    border: 1px solid gray;
+    border-radius: 2%;
+    box-shadow: 3px 3px;
+    transition: 3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.output-container{
+    visibility: hidden;
+    margin-left:5%;
+    margin-right: 5%;
+    border: 1px solid gray;
+    border-radius: 2%;
+    box-shadow: 3px 3px;
+    transition: 3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    
+}
+
+#outputWrapper{
+    visibility: hidden;
+    /* opacity: 0; */
+    /* transition: opacity 3s cubic-bezier(0.175, 0.885, 0.32, 1.275), visibility 0s 3s; */
+}
+
+#output{
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 3s cubic-bezier(0.175, 0.885, 0.32, 1.275), visibility 0s 3s;
+}
+
+.main-heading{
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-container > button{
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    transition: 2s ease-in;
+}
+
+.input-container > input{
+    transition: 2s ease-in;
+}
+
+@media (min-width:320px) {
+    body{
+        margin-left: 20px;
+        margin-right: 20px;
+    }    
+}
+
+@media (min-width:360px){
+    body{
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+}
+
+@media (min-width:480px){
+    body{
+        margin-left: 35px;
+        margin-right: 35px;
+    }
+}
