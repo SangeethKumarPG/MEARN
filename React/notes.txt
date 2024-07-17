@@ -197,5 +197,142 @@ Events
 Actions performed by the user which leads to some updates in DOM.
 eg: button click, mouse hover, keydown etc.
 
+Button click
+------------
+    event: onClick={}
+    two types:
+        1) Without arguments
+            onClick = {function_name}
+        2) With arguments from jsx code to js code. Here we call function as callback function.
+            onClick = {()=> function_name(arguments)}
+    
+    Getting Value from input field
+    -------------------------------
+    onChange() method is used to get value from input field.
+    syntax:
+        <input type="text" onChange={(e)=>function_name(e)}/>
 
+    To get the value:
+        e.target.value;
+
+Conditional Rendering
+=====================
+Loading condition in browser based on some condition
+1)if
+    operator used is called truthy operator (&&)
+2)if else 
+    operator used is ternary operator (?:)
+
+NOTE:
+=====
+When using js code inside the return() defining code blocks for methods is done by ().
+eg:
+            <tbody>
+          {userData.map((item, index) => (
+            <tr>
+              <td>{index + 1}</td>
+              <td>{item.name}</td>
+              <td>{item.age}</td>
+              <td>{item.position}</td>
+            </tr>
+          ))}
+        </tbody>
+
+State
+=====
+State is an object which is used to store property of the react class component.
+Whenever the value of the state changes the entire component re renders.
+eg:
+    import React, { Component } from "react";
+
+    export default class Random extends Component {
+        constructor() {
+            super();
+            this.state = { carName: "Polo" };
+        }
+        render() {
+            return (
+            <>
+                <div>Random</div>
+                <h3>Car name : {this.state.carName}</h3>
+            </>
+            );
+        }
+    }
+
+note that inside the constructor super is called.
+
+
+setState() method is used to update the value of state.
+
+Lifecycle of a react class component
+====================================
+stages through which an object pass through from the creation of the component till destruction.
+1) Mounting Phase : Adding or binding the component into DOM. 
+    - constructor is executed first.
+    - getDerivedStateFromProps() : This method will check if any data is coming in props. 
+    - render() : loads the jsx code into dom. 
+    - componentDidMount() : 
+2) Updating Phase : 
+    Updating the Dom
+    - getDerivedStateFromProps() : is called first. Checks weather if there are any changes to the component props values.
+    - shouldComponentUpdate() : return true or false depending weather there is an update the the component props.
+    - getSnapShotBeforeUpdate() : creates a snapshot of the virtual dom before update.
+    - render(): renders the changes to the components.
+    - componentDidUpdate() : checks weather the changes are applied.
+3) Unmounting Phase : 
+    - componentWillUnmount() : does the unmounting of the component. 
+
+React Hooks
+===========
+Predefined functions used to give specific features to functional components.
+eg: useState()
+    useEffect()  
+
+Usage
+-----
+1) import hooks from React library to the functional component.
+2) call react hooks at the top level of js code of functional component.
+3) Hooks cannot be used on conditions such as if and if else.
+
+Differrent types of hooks
+-------------------------
+1) predefined : in built, we can use it directly by importing. It performs a particular function.
+    eg: useState(), useEffect()
+2) custom : created by user for specific need.
+
+Stateful component and stateless component
+------------------------------------------
+- class component is stateful component, because state is inbuilt on class component
+    we can directly use it by calling this.state. the setState() method can be used to change the value of state.
+- functional component is stateless component, by default functional component doesnot have a state.
+- for implementing state in functional component, we have to import state from react library.
+- useState() is the hook used to implement the state in functional component.
+
+useState() hook
+-----------------
+This hook is used to implement state in functional component.
+Syntax:
+    const [variable_name, method_name] = useState("initial value")
+    variable_name : holds the value of the state
+    method : used to update the value of the state.
+    initial value : is not mandatory
+
+we must import the useState() method from react
+i.e : import {useState} from 'react'
+
+NOTE:
+=====
+When changing the state the entire state is replaced with new state. if the state consists of multiple objects 
+and you are Updating a single object all the remaining objects will be removed from the state. To avoid this we 
+use '...' spread operator.
+eg: 
+    const [colors, setColors] = useState({
+        first:"red",
+        second:"blue",
+        third:"yellow",
+        fourth : "green"
+    })
+    onClick={()=> setColors({...colors, second:"orange"})}
+    
 
