@@ -334,5 +334,56 @@ eg:
         fourth : "green"
     })
     onClick={()=> setColors({...colors, second:"orange"})}
+
+React Forms 
+===========
+
+e.preventDefault() is used to prevent the default page refresh of html forms on submit. This is used inside 
+the onsubmit handler function. the handler function must get the event e as an argument.
+
+
+
+Using Bootstrap in React
+========================
+1) Using CDN : We can copy the cdn url from the bootstrap website and paste it inside the head section of index.html.
+2) By installing bootstrap in our application : 
+    using the npm install bootstrap command
+                eg: npm install bootstrap@5.3.3
+
+    will install the bootstrap inside the project. 
+    After this import the bootstrap.min css file inside the index.js 
+    i.e import 'bootstrap/dist/css/bootstrap.min.css' 
+
+    Now we can use the bootstrap classes for our react components. 
+
+
+
+
+Regular Expressions
+===================
+It is used to check weather a given string have a particular pattern. 
+Rules to create a regular expression:
+- It should have foward slash "/" at the begining and ending.
+- starting of the expression is indicated by "^" symbol.
+- Ending of the expression is indicated by "$"
+
+    eg: /^[0-9]*$/ This expression check if only numbers are present in the string.
+
+        /^[A-Za-z]*$/ This checks if there are only alphabets in the input.
+    usage : var x = "123"
+            !!x.match(/^[0-9]*$/)
+            !! is used to convert the value of the match() function to a boolean value.
+
     
 
+
+NOTE:
+=====
+To build react project use 
+
+npm run build
+
+after running this you will get a build folder inside the project folder.
+We have to deploy this build folder.
+
+    
