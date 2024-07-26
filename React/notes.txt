@@ -386,4 +386,24 @@ npm run build
 after running this you will get a build folder inside the project folder.
 We have to deploy this build folder.
 
+Pure Function
+=============
+1) Always produces the same output
+    - that means no matter how many times we call the function with same arguments it will return the same result.
+    - content inside the pure function does not change based on the external data that is coming from API or state change.
+    - it doesnot have side effects. eg of side effects are API calls, IO operations, read/write files.
+        pure function cannot be affected by side effects.
+        
+
+
+useEffect() hook
+================
+
+
+
+NOTE:
+=====
+When binding data from api's use ?. to make sure that the attribute of json object is binded correctly.
+eg:  movie?.overview
+    movie?.overview?.length <= 200
     

@@ -1,0 +1,26 @@
+.nav_container{
+    display: flex;
+    color: white;
+    /* background-color: rgba(0, 0, 0, 0.2); */
+    background-color: transparent;
+    position: fixed;
+    backdrop-filter: blur(0.18rem);
+}
+.nav_container img{
+    background-color: transparent;
+    height: 5rem;
+    width: 8rem;
+    margin-left: 0.1rem;
+}
+.nav_container ul{
+    display: flex;
+    list-style: none;
+    margin-left: 2rem;
+}
+
+.nav_container ul li{
+    color: white;
+    font-size: 0.9rem;
+    margin-right: 0.75rem;
+    margin-top: 2rem;
+}
