@@ -1,0 +1,43 @@
+.loading-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    z-index: 9999;
+}
+
+.loading-image{
+    width: 10rem;
+    height: 10rem;
+    animation: expand 3s infinite;
+
+}
+
+@keyframes expand {
+    0%{
+        transform: scale(1);
+        opacity: 1;
+    }
+    /* 25%{
+        transform: scale(1.25);
+        opacity: 0.95;
+    }
+    50%{
+        transform: scale(1.5);
+        opacity: 0.9;
+    }
+    75%{
+        transform: scale(1.75);
+        opacity: 0.85;
+    } */
+    100%{
+        transform: scale(2);
+        opacity: 0.8;
+    }
+
+}
