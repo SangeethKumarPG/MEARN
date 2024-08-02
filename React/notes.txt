@@ -398,7 +398,10 @@ Pure Function
 
 useEffect() hook
 ================
-
+useEffect(()=>{
+    // Runs on the first render 
+    // and anytime any dependency value changes.(it runs when the passed props or state value changes)
+},[prop, state])
 
 
 NOTE:
@@ -407,3 +410,39 @@ When binding data from api's use ?. to make sure that the attribute of json obje
 eg:  movie?.overview
     movie?.overview?.length <= 200
     
+
+Vite
+====
+- Vite is a modern front-end build tool that offers a fast development experience for web developers.
+    - it can be used with react
+    - it makes building of the project very quick
+    - it replaces traditional build tool 'webpack'
+
+How to create React application using Vite
+------------------------------------------
+
+npm create vite@latest application_name -- --template react
+- navigate to the application folder name and execute npm install
+- npm run dev : use to run the react application.
+
+Routing 
+=======
+- To enable routing in your application :
+
+    - install react router dom from npm by using npm i react-router-dom
+    - import BrowserRouter from react-router-dom.
+    - inside the main.jsx file wrap the App component inside <BrowserRouter></BrowserRouter> tag
+    - inside the App.jsx we will provide the necessary routes.
+    - inside the main of the app component define the Routes tag
+        inside it define the individual routes
+        eg:<>
+                <Header/>
+                <Routes>
+                    <Route path="/" element={<Landing/>}/>
+                    <Route path='/home' element={<Home/>}/>
+                    <Route path='/watch' element={<WatchHistory/>}/>
+                </Routes>
+                <Footer/>
+            </>
+        path attribute specifies the path. the element attribute specifies the component to be loaded.
+        
