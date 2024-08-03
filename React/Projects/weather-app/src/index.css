@@ -1,0 +1,8 @@
+body{
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  background-image: url('background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #41C9E2;
+}
