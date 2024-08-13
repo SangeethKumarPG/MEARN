@@ -427,11 +427,15 @@ npm create vite@latest application_name -- --template react
 
 Routing 
 =======
+- Routing is navigating one page to another or loading some other component.
 - To enable routing in your application :
 
     - install react router dom from npm by using npm i react-router-dom
     - import BrowserRouter from react-router-dom.
-    - inside the main.jsx file wrap the App component inside <BrowserRouter></BrowserRouter> tag
+    - inside the main.jsx file wrap the App component inside <BrowserRouter></BrowserRouter> tag like:
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
     - inside the App.jsx we will provide the necessary routes.
     - inside the main of the app component define the Routes tag
         inside it define the individual routes
@@ -443,6 +447,17 @@ Routing
                     <Route path='/watch' element={<WatchHistory/>}/>
                 </Routes>
                 <Footer/>
-            </>
         path attribute specifies the path. the element attribute specifies the component to be loaded.
         
+    - To use the routes we need to use <Link> <Link> tag in our components where we need to place links.
+        eg: 
+            <Link to="/">
+                Landing Page
+            </Link>
+            <Link to="/home">
+                Home
+            </Link>
+            <Link to="/watch">
+                Watch History
+            </Link>
+

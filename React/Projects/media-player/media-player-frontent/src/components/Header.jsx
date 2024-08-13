@@ -1,6 +1,7 @@
 import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
+import { Link } from 'react-router-dom';
 
 function Header() {
   return (
@@ -16,9 +17,11 @@ function Header() {
                   height="30"
                   className="d-inline-block align-top"
                 />{' '} */}
+                <Link to="/" style={{textDecoration:"none", color:"black"}}>
                 <i className="fa-solid fa-video text-warning"></i>
 
                 &nbsp;Video Player
+                </Link>
               </Navbar.Brand>
               
             </Container>
