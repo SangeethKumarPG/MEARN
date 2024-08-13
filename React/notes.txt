@@ -461,3 +461,43 @@ Routing
                 Watch History
             </Link>
 
+Data Communication in React
+===========================
+1) Redux - used for communication between unrelated components
+2) Context API - used for communication between unrelated components
+3) State Lifting - for Communication between sibling components(components with same parents)
+
+3) State Lifting
+----------------
+- state lifting is used to pass data between sibling components.
+- We create a common state in parent component and pass it to child components.
+- We are using this to bind data to the UI without refreshing the page. 
+- Here we pass the setter of the useState to the component which updates the data. and 
+  we pass the state name to the component which needs the updated data. we are passing it as props.
+  in the component which requires the updated data we call the use effect with the prop name inside the []
+
+  eg:
+
+  const [uploadVideoStatus, setUploadVideoStatus] = useState({});
+  in the parent component Home
+
+  in the child component Add.jsx which updates the data
+  we use :
+  <Add setUploadVideoStatus={setUploadVideoStatus}/>
+        function Add({setUploadVideoStatus}) {
+            ....
+            setUploadVideoStatus("set the data");
+
+        }
+    in the child component View.jsx which needs to update the data:
+    <View videoStatus={uploadVideoStatus}/>
+    function View({videoStatus}) {
+
+        ....
+          useEffect(() => {
+            getVideos();
+        }, [videoStatus]);
+
+    }
+
+

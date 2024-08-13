@@ -6,8 +6,7 @@ import Modal from "react-bootstrap/Modal";
 import { useState } from "react";
 import { downloadVideo, downloadAudio } from "../services/AllApi";
 import './VideoCard.css';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from 'react-toastify';
 
 function VideoCard({ displayVideo }) {
   const [show, setShow] = useState(false);
@@ -17,15 +16,20 @@ function VideoCard({ displayVideo }) {
 
   const downloadYoutubeVideo = async()=>{
     const videoId = displayVideo?.youTubeLink.slice(-11);
-    toast.info("Please wait for a minute for the download to start.")
+    toast.info("Please wait for a minute for the download to start.", {
+      containerId:"download-info-container"
+    })
     const result = await downloadVideo(videoId);
+    
 
   }
 
   const downloadMp3 = async()=>{
     const videoId = displayVideo?.youTubeLink.slice(-11);
     console.log(videoId);
-    toast.info("Please wait for a minute for the download to start.")
+    toast.info("Please wait for a minute for the download to start.", {
+      containerId:"download-info-container"
+    })
     const result = await downloadAudio(videoId);
   }
   return (
@@ -87,7 +91,7 @@ function VideoCard({ displayVideo }) {
          
         </Modal.Footer>
       </Modal>
-      <ToastContainer autoClose={10000}/>
+      <ToastContainer containerId={'download-info-container'} autoClose={2000}/>
     </>
   );
 }

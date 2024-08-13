@@ -3,7 +3,8 @@ import VideoCard from "./VideoCard";
 import { getAllVideos } from "../services/AllApi";
 import { Col, Row } from "react-bootstrap";
 
-function View() {
+
+function View({videoStatus}) {
   const [allVideos, setAllVideos] = useState([]);
   const getVideos = async () => {
     const response = await getAllVideos();
@@ -12,8 +13,9 @@ function View() {
     setAllVideos(data);
   };
   useEffect(() => {
+    console.log(videoStatus);
     getVideos();
-  }, []);
+  }, [videoStatus]);
   return (
     <>
       <Row>
@@ -27,6 +29,7 @@ function View() {
           <p>Nothing to display</p>
         )}
       </Row>
+      
     </>
   );
 }

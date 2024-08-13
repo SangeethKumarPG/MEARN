@@ -8,7 +8,7 @@ import { v4 as uuid } from "uuid";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function Add() {
+function Add({setUploadVideoStatus}) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -25,13 +25,14 @@ function Add() {
     const { videoId, caption, imageUrl, youTubeLink } = videoDetails;
     if (!videoId || !caption || !imageUrl || !youTubeLink) {
       // alert("Please fill the form completely");
-      toast.warning("Please fill the form completely!");
+      toast.warning("Please fill the form completely!", {containerId:"add-toast-container"});
     } else {
       console.log("final data : ", videoDetails);
       const response = await uploadVideo(videoDetails);
       console.log(response);
       if (response.status == 201) {
-        toast.success(`${response.data.caption} uploaded succesfully!!!`);
+        toast.success(`${response.data.caption} uploaded succesfully!!!`,{containerId:"add-toast-container"});
+        setUploadVideoStatus(response.data);
       } else {
         toast.error(`${response.status} error`);
       }
@@ -46,7 +47,7 @@ function Add() {
       /^(https?:\/\/)?(www\.)?(youtube\.com\/(watch\?v=|embed\/|v\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})$/;
 
     if (!youtubeUrlPattern.test(data)) {
-      alert("invalid url");
+      toast.error("invalid url", {containerId:"add-toast-container"});
       linkField.value = "";
     } else {
       const link = `https://www.youtube.com/embed/${data.slice(-11)}`;
@@ -146,7 +147,7 @@ function Add() {
           </Button>
         </Modal.Footer>
       </Modal>
-      <ToastContainer />
+      <ToastContainer containerId={"add-toast-container"} autoClose={1000}/>
     </div>
   );
 }
