@@ -1,0 +1,36 @@
+Node js application
+-------------------
+- How to create a nodejs application 
+    - Create a folder
+    - run npm init -y in the folder
+    - To create a dummy server, we use the json server npm package.(use npm install to install this)
+    - create an index.js file and make sure that it is present in package.json
+    - under the scripts tag of package.json add a "start" key. the value of this key indicates the operation to be
+        performed when you run npm start. similarly you can also configure other commands.
+        in here we are using node index.js commnand
+    - inside the index.js file 
+        // import the json server
+        const jsonServer = require('json-server')
+
+        // create server using create()
+        const mediaPlayerServer = jsonServer.create()
+
+        // create a path/route to db.json file
+        const router = jsonServer.router('db.json')
+
+        // create a middleware 
+        const middleware = jsonServer.defaults()
+
+        // add middleware and router to media player server
+        mediaPlayerServer.use(middleware)
+        mediaPlayerServer.use(router)
+
+        const PORT = 4000
+
+        // run the server
+        mediaPlayerServer.listen(PORT, ()=>{
+            console.log("Media Player Server running on port : ",PORT)
+        })
+
+        to create a sample server. the db.json is a json file which store the required data for the app.
+    

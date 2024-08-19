@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="sayHello()">Click me!</button>
+    <br>
+    <h3 id="result"></h3>
+    <br>
+    <br>
+    <button onclick="howAreYou()">Print</button>
+    <br>
+    <br>
+    <button onclick="changeColor()">Change Color</button>
+    <br>
+    <br>
+    <h4 onmouseover="changeBackgroundColor()" onmouseleave="revertBakgroundColor()" id="sampleText">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos necessitatibus consequatur repellat odit tenetur deleniti minus voluptatem incidunt, a animi culpa obcaecati, alias inventore, ducimus eum vel? Praesentium, soluta sapiente.</h4>
+</body>
+<script>
+    function sayHello(){
+        alert("Hello!!!");
+    }
+    function howAreYou(){
+        result.innerHTML = "How are you";
+    }
+
+    function changeColor(){
+        result.style.color="red";
+    }
+
+    function changeBackgroundColor(){
+        sampleText.style.backgroundColor="orange";
+    }
+
+    function revertBakgroundColor(){
+        sampleText.style.backgroundColor = "transparent";
+    }
+</script>
+</html>

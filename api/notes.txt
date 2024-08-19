@@ -1,0 +1,191 @@
+API
+===
+- Application Programming Interface.
+Mechanism that enable front-end and backend to communicate with each other.
+It can also be used for connecting the backend with any other application.
+API's must follow a set of rules
+
+Two types of API
+----------------
+1) Public API: Freely available and we can directly use them
+2) Private API's: Internal to a company or organisation. We cannot use it directly. We need to use authentication tokens to access them.
+
+Authentication vs Authorization
+--------------------------------
+Authentication verifies the users credentials. Authorization checks weather the authenticated user has the permission to
+access the information.
+
+Authentication is done through username and password.
+Authorization is implemented through roles and usergroups.
+
+
+URL
+---
+Uniform Resource Location: address of a location where specific resource is stored in internet.
+
+DNS
+---
+Domain Name Server: Used for domain name to IP address mapping. 
+
+Protocols:
+----------
+Set of rules that need to be considered while sending and recieving data 
+
+Differrent Types of Communication Protocols
+-------------------------------------------
+HTTP: Most commonly used. 
+HTTPS: secured(encrypted) HTTP.
+
+HTTP Methods
+------------
+GET: To get data from resource
+POST: To send data to resource
+PUT: To update the data of resource. Update the entire object
+PATCH: To update certain parts of the data in the resource.
+DELETE: To delete data from resource.
+
+HTTP Status Code
+----------------
+1xx - informational response
+2xx - Success 
+3xx - redirectional
+4xx - client error, problem with request 
+5xx - Server side error.
+
+JSON
+----
+Javascript object notation. Commonly used data format to send and receive data.
+Data is send as key value pairs. The key must be in string format.
+eg:
+{
+    "name":"John Doe",
+    "age": 24
+}
+
+It is a simple format which makes communication easy for both frontend and backend.
+
+XML
+---
+Extensible markup language.
+Comparitively more complex. Not commonly used. It uses tags.
+
+API Types
+---------
+REST API's: Representational State Transfer. most popular. It uses set of rules for building api.
+It uses http for basic CRUD operations.
+
+SOAP API's: Simple Object Access Protocol. 
+RPC : Remote procedure call.
+
+API Testing Tools
+-----------------
+Postman, Thunder Client(VS Code extension).
+
+Synchronous Functions and Asynchronous Functions
+------------------------------------------------
+Synchronous functions are executed in sequence. Each operation must complete before next operation begin.
+If synchronous function contain long running task like loop or complex calculations API fetch etc. It will block the 
+execution of subsequent code until the task is finished. 
+
+Asynchronous functions: It takes some time to execute. This allow the program to continue executing other tasks while
+waiting for asynchronous operation to complete. 
+
+Is Javascript single threaded or multi threaded?
+Javascript is primarily single threaded. i.e, it can execute only one operation at a time. Callstack in javascript engine executing the code. js has only one call stack.
+
+How javascript handles asynchronous operations?
+-----------------------------------------------
+1) Callstack- Synchronous code is placed here and the codes are executed. It is executed first.
+2) micro task queue - Used to for asynchronous api calls. The code which require wait time is stored here. It has second highest priority. After the callstack is completed the code in This
+queue is pushed to callstack.
+3) callback queue - Used for storing asynchronous function calls. Least priority. If the callstack and micro task queue are empty, the code in this queue is pushed to callstack. 
+4) Event loop - This loop is continuosly executing for executing code.
+
+
+
+Differrent API Calling Methods:
+===============================
+1) AJAX
+2)fetch
+3) async await
+
+AJAX
+----
+- Asynchronous javascript and XML. 
+- It makes use of an inbuilt class in javascript. It is XMLHttpRequest.
+- 1) First we create an object of the above class to access methods and properties of that class. 
+  const https = new XMLHttpRequest();
+- 2) Call open() for connection establishment. 
+    http.open('method','url')
+- 3) Send request 
+    http.send()
+- 4) Check the ready state.
+        http.onreadystatechange = ()=>{
+            console.log(http.readyState);
+        }
+
+Ready State
+-----------
+- Ready state are important concepts while working with AJAX request.
+- It indicates the state of AJAX request.
+- It's value ranges from 0 to 4.
+- It allow user to track the progress of AJAX request.
+    0: Unsend state
+    1: open state
+    2: header set state
+    3: loading state
+    4: success(done stage)
+
+fetch
+-----
+- It make use of promise concept. promise represents an eventual completion of an asynchronous operation. 
+- It has 3 states.
+    1)pending:in progress state
+    2)resolved: fulfilled(done state)
+    3)reject: failure state
+
+    If we need the result of a process inorder to do a particular operation, we can use promise.
+    Promise is used to manage asynchronous functions/ api calls.
+
+    We will call the aynchronous function inside promise, if it is success, it uses resolve() method 
+    to send back the response, if it is failure, it will use reject method to send back the error.
+    .then() method is used to access the completed promise function. 
+    If promise is rejected we can access the error object in .catch() method.
+
+    const promise_name = new Promise((resolve, reject)=>{
+        
+    });
+
+    promise_name.then(()=>{
+        //success code
+    }).catch((error)=>{
+        //error handling
+    });
+
+
+eg: fetch("https://fakestoreapi.com/products").then((response)=>{
+        console.log(response);
+        response.json().then((data)=>{
+        });
+
+.json() is called on the response object to convert the response text into json object. The default response body 
+is in ReadableStream type which cannot be accessed directly, so we are converting into json.
+
+fetch post method
+-----------------
+fetch("api url", {method:'POST',
+                    headers:{
+                        'Content-Type':'application/json',
+                        'Bearer Token': 'asdasdasda'
+                    },
+                    body{
+                        "key":value
+                    }
+                    }).then((response)=>response.json()).then((data)=>{
+                        console.log(data);
+                    }).catch((error)=>{
+                        console.log(error);
+                    })
+
+Async await
+-----------

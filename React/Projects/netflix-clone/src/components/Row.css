@@ -1,0 +1,26 @@
+.row{
+    margin-left: 4rem;
+    margin-bottom: 4rem;
+}
+
+.movie_row{
+    display: flex;
+    overflow-x: scroll;
+    margin-top: 4rem;
+}
+::-webkit-scrollbar{
+    display: none;
+}
+
+.movies{
+    width: 10rem;
+    height: 12rem;
+    margin-right: 1rem;
+    transition: 500ms;
+    
+}
+.movies:hover{
+    transform: scale(1.10);
+}
+
+/* style={{width:"10rem", height:"12rem", padding:"0.2rem"}} */

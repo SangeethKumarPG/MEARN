@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+   <link rel="shortcut icon" href="https://icons.iconarchive.com/icons/dtafalonso/android-lollipop/512/Calculator-icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="display" readonly>
+        <br>
+        <button onclick="appendNumber('(')" class="operator">(</button>
+        <button onclick="appendNumber(')')" class="operator">)</button>
+        <button onclick="appendNumber('**')" class="operator">^</button>
+        <button onclick="appendNumber('Math.sqrt(')" class="operator">SQRT</button>
+
+        <button onclick="appendNumber('7')">7</button>
+        <button onclick="appendNumber('8')">8</button>
+        <button onclick="appendNumber('9')">9</button>
+        <button class="operator" onclick="appendNumber('+')">+</button>
+        <br>
+        <button onclick="appendNumber('4')">4</button>
+        <button onclick="appendNumber('5')">5</button>
+        <button onclick="appendNumber('6')">6</button>
+        <button class="operator" onclick="appendNumber('-')">-</button>
+        <br>
+        <button onclick="appendNumber('1')">1</button>
+        <button onclick="appendNumber('2')">2</button>
+        <button onclick="appendNumber('3')">3</button>
+        <button class="operator" onclick="appendNumber('*')">*</button>
+        <br>
+        <button onclick="appendNumber('0')">0</button>
+        <button class="equal" onclick="calculate('=')">=</button>
+        <button onclick="appendNumber('/')" class="operator">/</button>
+        <button onclick="clearDisplay()">C</button>
+    </div>
+
+</body>
+<script>
+    function appendNumber(num){
+        display.value+=num;
+    }
+
+    function clearDisplay(){
+        display.value = "";
+    }
+
+    function calculate(equal){
+        var exp = display.value;
+        display.value += "=";
+        var result = eval(exp);
+        display.value = result;
+    }
+</script>
+</html>

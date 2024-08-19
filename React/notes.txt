@@ -1,0 +1,463 @@
+React JS
+---------
+Front-end technology used to create User Interface. 
+It is a javascript library. It make use of multiple javascript libraries to create front-end.
+libraries - predefined code to do a particular task.
+Framework - set of libraries. Prebuilt set of tools libraries and conventions that provide a structured way to
+            develop a software application.
+
+Features of React
+-----------------
+- Used to create front-end 
+- SPA (Single Page Application): It is a web application that  provide a seamless, dynamic user experience without the need to reload the entire,
+    page from the server. In react we only have one html file called index.html file inside public folder. Browser only loads this html page, 
+    while the user requests other webpages, only the content inside this index.html page reloads.
+
+    In traditional web-application we have multiple html pages. for each iteration, the application typically loads a new page from the server
+    resulting in full page refresh.
+
+- React uses virtual DOM. 
+    Real DOM - the actual representation of the webpage that browser renders.
+    Virtual DOM - Lightweight representation of the real dom. 
+
+    How react uses virtual DOM? 
+        While a react application loads/starts, initially it create Real DOM along with Virtual DOM. 
+        If any events happend and changes the html element, it creates a new virtual dom, then compares the newly created virtual dom with,
+        previous one and finds the difference. Then react updates only the changed html elements based on the identified differences.
+
+    Diffing: Process of compairing new virtual dom with the previous virtual dom to find the difference.
+    Reconcillation: After diffing react update the real dom with only the changes. 
+
+- React js is fully component based. 
+- Data sharing is uni-directional(from parent to child component).
+- Language used is JSX (combination of html css and js). File extensions for components we are generally using (.jsx).
+- transpiling : process of converting jsx into javascript, css and html. babel is a compiler that performs the transpiling. 
+
+How to create a react application?
+==================================
+step 1: We need to install an npm package create-react-app
+        npm install -g create-react-app (to install create-react-app globally)
+        npm install create-react-app (to install only in the current folder).
+
+step 2: by using the above installed package create a react app
+        npx create-react-app appname
+        
+step 3: navigate to the application folder and start the application using
+        npm start 
+        By default the react application runs in http://localhost:3000/
+
+
+npm: node package manager
+npx: node package execute
+
+Files and folders in React Application
+--------------------------------------
+README.md : Details of the project, how to run the project etc.
+
+package.json : Heart of the react project. It holds the npm configuration. it includes all the installed libraries/node modules.
+                If we install a new module, it will automatically get updated in package.json. 
+                also, it includes scripts, to run the application, test the application, build the application, execute.
+
+package-lock.json : More detailed version of package.json file with all details of the libraries and modules with exact version number.
+
+.gitignore : Used to add files or folders which should be excluded from git version control. By default the node_modules folder and some other files are present here.
+
+node_modules : Folder which stores all the necessary libraries for the project. While pushing the code into version control like git we exclude this folder. When a new user
+                clones the project the node modules will not be there and the project will not run. So for this we must run "npm install" to download and install the necessary 
+                node modules. The dependencies present in the package.json will be used for downloading node_modules. 
+
+public : Folder for storing files that can be accessed throughout the project. index.html is present here. index.html is the only file that the browser loads while running the react app.
+        - in index.html file there is one div with id root. in that div we are binding the page/data.
+        - <noscript> tag is used to pass information to developer about the page.
+
+src: 
+    index.js - Entry point to the application. here we import multiple dependencies/libraries. inside the index.js we access the root div from index.html by using
+                cont root = document.getElementById("root") and then binds the app component to the root.
+
+    app.js - this is the parent component that loads first in the index.js file.
+
+            components: Basic unit of the react application. we can split the entire react application into small components which can be managed easier. Like header, footer, homepage.
+                        While creating component, it should start with capital letter. we are using .jsx extension commonly for creating components. 
+
+NOTE
+====
+In react if we want to apply class for elements, we must use className.
+In return() of a component only 1 parent div should be there.
+We can also use empty fragments (<>....</>) also instead of parent div tag. 
+return(): Write the code which the user sees on the screen. It should contain only jsx code. 
+
+The name of the function should be same as the component name and must start with capital letter.
+After creating the component function we must export it using
+export default Component;
+
+inside the App.js we must import the component.
+import Component from './Component'
+
+To add the component place it inside the return with a self closing tag like
+return(
+    <div>
+        <Component/>
+    </div>
+)
+
+ES7+React/Redux extension for vscode. 
+use rfce to create a react functional component with export.
+
+Basic Structure of a Functional Component
+-----------------------------------------
+function ComponentName(){
+    //javascript code
+    return(
+        //jsx code
+        <>
+            Components to be the returned.
+        </>
+    );
+}
+
+export default ComponentName;
+
+Dynamic Data binding
+--------------------
+{} - is used to bind data dynamically. 
+
+Differrence between app.css and index.css?
+-----------------------------------------
+index.css is the global style sheet whatever the styles mentioned in index.css file will affect 
+throughout application. Like browser style setting, body, styles etc.
+
+App.css : This stylesheet only belongs to app component and its immediate children. The styles mentioned in 
+    app.css will only affect the html elements belonging to the App component and immediate children.
+
+
+Data Transfer Between Components
+================================
+In react data transfer is uni directional, i.e from parent to child. 
+
+Props
+------
+- It is used to send data from parent to child component.
+- We pass the data from parent component to child component in
+    keyName = value inside the parent component tag. 
+- To access the value in the child component we must pass an argument to the Child Component function to accept an object.
+    From this object we must access this using . operator or using object destructuring.
+
+Class Components
+================
+Here we are using class to create component. By default a javascript class doesnot have the properties of react. For this we need to import
+React class from "react". Then make the class you created a child class of React.Component class.
+Inside the class define the render() method. inside the render() method define the return. Note that class component name must start with capital letter.
+
+To access props from the class component pass the props as key value pair from the Component Tag. Inisde the class inside the render method
+use 
+const {key} = this.props; 
+or 
+const key = this.props.key;
+
+Styling
+-------
+1) inline
+2) External
+3) modules
+
+1) inline
+----------
+inside {} pass it as an object.
+style = {{property1:"value", property2:"value"}}
+if properties have - in them use camel case letters.
+eg: background-color is defined as backgroundColor.
+
+We can also define a const, or var inside the component function or class.
+eg:
+divStyle = {
+    backgroundColor : 'grey',
+    textAlign:'center',
+    margin:'40px',
+    padding: '10px'
+  };
+
+  to apply style use <div style={this.divStyle}>
+  
+
+2) External
+-----------
+create a .css file.
+import the css file into the corresponding component.
+inside the css file there is no need for export.
+
+3) Modules 
+----------
+file extension : file_name.module.css
+ - created inside src folder (outside the components )
+ - We can store the imported module into a variable and style the elements.
+ -  Can be accessed throughout the project
+
+Events 
+=======
+Actions performed by the user which leads to some updates in DOM.
+eg: button click, mouse hover, keydown etc.
+
+Button click
+------------
+    event: onClick={}
+    two types:
+        1) Without arguments
+            onClick = {function_name}
+        2) With arguments from jsx code to js code. Here we call function as callback function.
+            onClick = {()=> function_name(arguments)}
+    
+    Getting Value from input field
+    -------------------------------
+    onChange() method is used to get value from input field.
+    syntax:
+        <input type="text" onChange={(e)=>function_name(e)}/>
+
+    To get the value:
+        e.target.value;
+
+Conditional Rendering
+=====================
+Loading condition in browser based on some condition
+1)if
+    operator used is called truthy operator (&&)
+2)if else 
+    operator used is ternary operator (?:)
+
+NOTE:
+=====
+When using js code inside the return() defining code blocks for methods is done by ().
+eg:
+            <tbody>
+          {userData.map((item, index) => (
+            <tr>
+              <td>{index + 1}</td>
+              <td>{item.name}</td>
+              <td>{item.age}</td>
+              <td>{item.position}</td>
+            </tr>
+          ))}
+        </tbody>
+
+State
+=====
+State is an object which is used to store property of the react class component.
+Whenever the value of the state changes the entire component re renders.
+eg:
+    import React, { Component } from "react";
+
+    export default class Random extends Component {
+        constructor() {
+            super();
+            this.state = { carName: "Polo" };
+        }
+        render() {
+            return (
+            <>
+                <div>Random</div>
+                <h3>Car name : {this.state.carName}</h3>
+            </>
+            );
+        }
+    }
+
+note that inside the constructor super is called.
+
+
+setState() method is used to update the value of state.
+
+Lifecycle of a react class component
+====================================
+stages through which an object pass through from the creation of the component till destruction.
+1) Mounting Phase : Adding or binding the component into DOM. 
+    - constructor is executed first.
+    - getDerivedStateFromProps() : This method will check if any data is coming in props. 
+    - render() : loads the jsx code into dom. 
+    - componentDidMount() : 
+2) Updating Phase : 
+    Updating the Dom
+    - getDerivedStateFromProps() : is called first. Checks weather if there are any changes to the component props values.
+    - shouldComponentUpdate() : return true or false depending weather there is an update the the component props.
+    - getSnapShotBeforeUpdate() : creates a snapshot of the virtual dom before update.
+    - render(): renders the changes to the components.
+    - componentDidUpdate() : checks weather the changes are applied.
+3) Unmounting Phase : 
+    - componentWillUnmount() : does the unmounting of the component. 
+
+React Hooks
+===========
+Predefined functions used to give specific features to functional components.
+eg: useState()
+    useEffect()  
+
+Usage
+-----
+1) import hooks from React library to the functional component.
+2) call react hooks at the top level of js code of functional component.
+3) Hooks cannot be used on conditions such as if and if else.
+
+Differrent types of hooks
+-------------------------
+1) predefined : in built, we can use it directly by importing. It performs a particular function.
+    eg: useState(), useEffect()
+2) custom : created by user for specific need.
+
+Stateful component and stateless component
+------------------------------------------
+- class component is stateful component, because state is inbuilt on class component
+    we can directly use it by calling this.state. the setState() method can be used to change the value of state.
+- functional component is stateless component, by default functional component doesnot have a state.
+- for implementing state in functional component, we have to import state from react library.
+- useState() is the hook used to implement the state in functional component.
+
+useState() hook
+-----------------
+This hook is used to implement state in functional component.
+Syntax:
+    const [variable_name, method_name] = useState("initial value")
+    variable_name : holds the value of the state
+    method : used to update the value of the state.
+    initial value : is not mandatory
+
+we must import the useState() method from react
+i.e : import {useState} from 'react'
+
+NOTE:
+=====
+When changing the state the entire state is replaced with new state. if the state consists of multiple objects 
+and you are Updating a single object all the remaining objects will be removed from the state. To avoid this we 
+use '...' spread operator.
+eg: 
+    const [colors, setColors] = useState({
+        first:"red",
+        second:"blue",
+        third:"yellow",
+        fourth : "green"
+    })
+    onClick={()=> setColors({...colors, second:"orange"})}
+
+React Forms 
+===========
+
+e.preventDefault() is used to prevent the default page refresh of html forms on submit. This is used inside 
+the onsubmit handler function. the handler function must get the event e as an argument.
+
+
+
+Using Bootstrap in React
+========================
+1) Using CDN : We can copy the cdn url from the bootstrap website and paste it inside the head section of index.html.
+2) By installing bootstrap in our application : 
+    using the npm install bootstrap command
+                eg: npm install bootstrap@5.3.3
+
+    will install the bootstrap inside the project. 
+    After this import the bootstrap.min css file inside the index.js 
+    i.e import 'bootstrap/dist/css/bootstrap.min.css' 
+
+    Now we can use the bootstrap classes for our react components. 
+
+
+
+
+Regular Expressions
+===================
+It is used to check weather a given string have a particular pattern. 
+Rules to create a regular expression:
+- It should have foward slash "/" at the begining and ending.
+- starting of the expression is indicated by "^" symbol.
+- Ending of the expression is indicated by "$"
+
+    eg: /^[0-9]*$/ This expression check if only numbers are present in the string.
+
+        /^[A-Za-z]*$/ This checks if there are only alphabets in the input.
+    usage : var x = "123"
+            !!x.match(/^[0-9]*$/)
+            !! is used to convert the value of the match() function to a boolean value.
+
+    
+
+
+NOTE:
+=====
+To build react project use 
+
+npm run build
+
+after running this you will get a build folder inside the project folder.
+We have to deploy this build folder.
+
+Pure Function
+=============
+1) Always produces the same output
+    - that means no matter how many times we call the function with same arguments it will return the same result.
+    - content inside the pure function does not change based on the external data that is coming from API or state change.
+    - it doesnot have side effects. eg of side effects are API calls, IO operations, read/write files.
+        pure function cannot be affected by side effects.
+        
+
+
+useEffect() hook
+================
+useEffect(()=>{
+    // Runs on the first render 
+    // and anytime any dependency value changes.(it runs when the passed props or state value changes)
+},[prop, state])
+
+
+NOTE:
+=====
+When binding data from api's use ?. to make sure that the attribute of json object is binded correctly.
+eg:  movie?.overview
+    movie?.overview?.length <= 200
+    
+
+Vite
+====
+- Vite is a modern front-end build tool that offers a fast development experience for web developers.
+    - it can be used with react
+    - it makes building of the project very quick
+    - it replaces traditional build tool 'webpack'
+
+How to create React application using Vite
+------------------------------------------
+
+npm create vite@latest application_name -- --template react
+- navigate to the application folder name and execute npm install
+- npm run dev : use to run the react application.
+
+Routing 
+=======
+- Routing is navigating one page to another or loading some other component.
+- To enable routing in your application :
+
+    - install react router dom from npm by using npm i react-router-dom
+    - import BrowserRouter from react-router-dom.
+    - inside the main.jsx file wrap the App component inside <BrowserRouter></BrowserRouter> tag like:
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+    - inside the App.jsx we will provide the necessary routes.
+    - inside the main of the app component define the Routes tag
+        inside it define the individual routes
+        eg:<>
+                <Header/>
+                <Routes>
+                    <Route path="/" element={<Landing/>}/>
+                    <Route path='/home' element={<Home/>}/>
+                    <Route path='/watch' element={<WatchHistory/>}/>
+                </Routes>
+                <Footer/>
+        path attribute specifies the path. the element attribute specifies the component to be loaded.
+        
+    - To use the routes we need to use <Link> <Link> tag in our components where we need to place links.
+        eg: 
+            <Link to="/">
+                Landing Page
+            </Link>
+            <Link to="/home">
+                Home
+            </Link>
+            <Link to="/watch">
+                Watch History
+            </Link>
+

@@ -1,0 +1,63 @@
+Bootstrap
+=================
+- Popular css framework developed by twitter
+
+Common Classes in Bootstrap
+============================
+
+1. container : it provides a margin along with padding on left and right
+2. container-fluid : it provides a small padding on left and right
+
+default colors in Bootstrap
+---------------------------
+success - green 
+primary - blue
+danger - red
+warning - orange
+dark - black
+light - white
+info - skyblue
+secondary - grey
+
+3. text-center : To center a text in the containig div
+4. m-1 to m-5: to provide margin from all 4 directions(values from 1 to 5)
+5. mt-5, mb-5, ms-5, me-5: 
+    mt-margin top
+    mb-margin bottom
+    ms-margin left(start)
+    me - margin right(end)
+6. p1 to p5:
+    similar to margin but gives padding
+    pt
+    pb
+    ps 
+    pe 
+7. border, border-success, [border-color], border-5:
+    border-top:apply a border to top
+    border-bottom:apply a border to bottom
+    We must give border class first then provide the property
+    eg:- border border-5
+
+8. fs: font size
+    values: fs-1 to fs-5 (fs-5 is the smallest and fs-1 is the largest)
+
+9. btn : To apply class to buttons
+    values: btn-success [btn-bscolor] to provide a bs color for buttons
+            btn-sm reduce the size of the button
+            btn-lg increase the size of the button
+            btn-md make the button medium sized
+
+    We must provide btn class before providing the property
+    i.e, btn btn-primary
+
+10. w-25, w-50, w-75, w-100: To set the width
+    w-100:take 100% of the container
+    w-75:take 75% of the width of the container
+    w-50:take the 50% of the width of the container
+    w-25:take the 25% of the width of the container
+
+Bootstrap Grid System
+======================
+To place html elements using rows and columns
+1 row consists of 12 columns
+

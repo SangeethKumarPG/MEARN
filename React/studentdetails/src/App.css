@@ -1,0 +1,19 @@
+.mainContainer{
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.student_header{
+  color: red;
+}
+
+.header_label{
+  color: blue;
+}
+
+.student_details_label{
+  margin-left: 40px;
+  color: orange;
+}

@@ -1,0 +1,27 @@
+.banner_content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 30rem;
+    width: 100vw;
+    align-content: flex-end;
+}
+
+.movie-name{
+    color: white;
+}
+.movie-overview{
+    color: white;
+    width: 20rem;
+    font-size: 0.8rem;
+}
+
+.content_container{
+    position: relative;
+    background-color: transparent;
+    backdrop-filter: blur(2rem);
+    overflow: hidden;
+    padding: .5rem;
+    border-radius: 1rem;
+}
+
