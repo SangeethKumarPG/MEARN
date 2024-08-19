@@ -1,0 +1,11 @@
+To resolve merge confilicts:
+
+1. git fetch origin
+2. try with git merge origin/main if this does not work
+    try git merge origin main --allow-unrelated-histories
+
+3. fix the individual files which have conflicts.
+4. add the changes to the staging area with git add .
+5. commit the changes using git commit -m "commit message"
+6. git push -u origin main to push the changes to the remote.
+
