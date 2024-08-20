@@ -500,4 +500,27 @@ Data Communication in React
 
     }
 
+2) Redux
+===========
+Used to transfer data between components. 
+
+Props Drilling : passing the props from the parent component to the child component and then to the 
+    grand child component (deeply nested child component) which requires the data from the parent.
+    This require the props to be passed through intermediate components.
+    
+    disadvantages : 
+    ---------------
+    1) Tightly couples components together(components become dependent on other components).
+    2) There is a chance of lossing data in between any components, if the corresponding intermediate component fails.
+    3) intermediate components doesnot need any data since they are only passing it down to the child components.
+    4) It makes the code more complex.
+
+Solution to this props drilling is Redux, Context API.
+
+Redux is a state management library that allows us to store the entire application's state in a central store, making it accessible 
+to any component in the tree.
+
+Redux is a javascript library. It can be used with any front-end technology. It can be used with Angular, react, vue etc.
+
+
 
