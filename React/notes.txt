@@ -522,5 +522,92 @@ to any component in the tree.
 
 Redux is a javascript library. It can be used with any front-end technology. It can be used with Angular, react, vue etc.
 
+There are mainly 3 components in Redux
+
+1) store : we are creating a state in the store and we will make that state global. Component has no ability to update the value
+            in state. But component has the ability to read the store.
+
+2) Action:
+        - It holds the logic to update the state.
+        - Dispatch is a method used to call update function inside action.
+        - After applying the logical operation, action sends the response(payload) to the reducer.
+          payload is the response after the logical operation. 
+
+3) Reducer : It updates the state inside the store. 
+
+This is the exact Redux. But now we are using Redux Toolkit.
+
+Redux Toolkit
+-------------
+- It is an advanced version of redux.
+- Here action and reducer is written in single file, combination of action and reducer is called slice.
+
+To install redux toolkit 
+
+install 
+
+npm install @reduxjs/toolkit 
+and 
+npm install react-redux
+
+after this inside the src folder of the react project create a new folder for storing redux files.
+inside this create store.js and slice.js. these file names should start with small letter, otherwise react may consider it as a component.
+
+inside the store we will need to configure store.
+For this we import configureStore from "@reduxjs/toolkit"
+
+then create a variable store to configureStore. The configureStore accepts a javascript object as argument.
+inside this we define a key reducer, which defines the reducers we have. 
+
+
+import {configureStore} from "@reduxjs/toolkit"
+
+// this will mark the file as store
+export const store = configureStore({
+    reducer:{
+        // add reducers here
+    }
+})
+
+after this wrap the App component in the main javascript file inside the Provider tag. point the store js file with
+the store key.
+
+  <StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </StrictMode>
+
+  note that both imports should be present in the main file 
+import { Provider } from "react-redux";
+import { store } from "./redux/store.js";
+
+next inside the slice file define create a variable and call the createSlice() method to mark it as slice.
+then inside this define the name, initial value, and the reducers. inside  the reducer object define the actions.
+
+eg:
+import { createSlice } from "@reduxjs/toolkit";
+
+// to initialize the file as slice we use a method createSlice.
+const counterSlicer = createSlice({
+    //name has no importance
+    name:'counterApp',
+    initialState:{
+        value: 0
+    },
+    reducers:{
+        // logic to update the value
+        // actions are created inside the reducers 
+        increment:(state)=>{
+            state.value += 1
+        },
+        decrement:(state)=>{
+            state.value -= 1
+        },
+        reset:(state)=>{
+            state.value = 0
+        }
+    }
+})
 
 
