@@ -589,7 +589,7 @@ eg:
 import { createSlice } from "@reduxjs/toolkit";
 
 // to initialize the file as slice we use a method createSlice.
-const counterSlicer = createSlice({
+export const counterSlicer = createSlice({
     //name has no importance
     name:'counterApp',
     initialState:{
@@ -609,5 +609,58 @@ const counterSlicer = createSlice({
         }
     }
 })
+
+// Export the action methods. Her even though we have defined the methods in reducers. 
+// actually it is getting stored in the actions key by redux. 
+// Similarly we need to export the reducer from the slicerInstance. the reducer key is created by redux.
+export const {increment, decrement, reset} = counterSlicer.actions;
+export default counterSlicer.reducer;
+
+after this define the reducer to the reducer key in the store.
+
+import {configureStore} from "@reduxjs/toolkit"
+import  counterSlicer  from "./slice" // note that we don't use {} for the slice Object when importing
+
+
+export const store = configureStore({
+    reducer:{
+        // add reducers here
+        counter: counterSlicer
+    }
+})
+
+the final component file will be like
+import React from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import { decrement, increment, reset } from '../redux/slice';
+
+function Counter() {
+  // Component can access the state by useSelector hook
+  const counterValue = useSelector((state)=>state.counter.value);
+  console.log(counterValue);
+
+  //useDispatch() is a hook used to call a method in action to update the state
+  const dispatch = useDispatch();
+  return (
+    <div>
+        <div className='d-flex align-items-center justify-content-center w-100 flex-column'>
+            <h1 className='display-1' style={{color:"#03346E"}}>{counterValue}</h1>
+            <div className='mt-3'>
+            {/* note that we are passing the functions as callbacks to the dispatch() so we need to specify () along the action function name*/}
+                <button className='btn btn-warning p-2 ' onClick={()=>dispatch(increment())}>INCREMENT</button>
+                <button className='btn btn-success p-2 ms-3' onClick={()=> dispatch(decrement())}>DECREMENT</button>
+                <button className='btn btn-danger p-2 ms-3' onClick={()=> dispatch(reset())}>RESET</button>
+            </div>
+        </div> 
+    </div>
+  )
+}
+
+export default Counter
+
+if we want to pass data to action function, we need to pass the data argument to the particular action function and to access the data, we must use 
+data.payload.
+
+
 
 
