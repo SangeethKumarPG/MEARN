@@ -20,7 +20,27 @@ function Footer() {
                     <Link to={"/cart"} style={{textDecoration:"none", color:"white"}}>Cart</Link>
                     <Link to={"/wishlist"} style={{textDecoration:"none", color:"white"}}>Wishlist</Link>
                 </div>
+                <div className="d-flex flex-column">
+                    <h4>Guides</h4>
+                    <Link to={"https://react.dev"} target='_blank' style={{textDecoration:"none", color:"white"}}>React</Link>
+                    <Link to={"https://react.dev"} target='_blank' style={{textDecoration:"none", color:"white"}}>React Bootstrap</Link>
+                    <Link to={"https://react.dev"} target='_blank' style={{textDecoration:"none", color:"white"}}>Bootswatch</Link>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <div className="d-flex">
+                        <input type="text" name="" id="" className='form-control' placeholder='Enter Email Id'/>
+                        <button type='button' className='btn btn-warning ms-2'>Subscribe</button>
+                    </div>
+                    <div className="d-flex justify-content-evenly mt-3">
+                        <Link style={{textDecoration:"none", color:"white"}}><i className="fa-brands fa-instagram fa-2x"></i></Link>
+                        <Link style={{textDecoration:"none", color:"white"}}><i className="fa-brands fa-x-twitter fa-2x"></i></Link>
+                        <Link style={{textDecoration:"none", color:"white"}}><i className="fa-brands fa-facebook fa-2x"></i></Link>
+                        <Link style={{textDecoration:"none", color:"white"}}><i className="fa-brands fa-whatsapp fa-2x"></i></Link>
+                    </div>
+                </div>
             </div>
+            <p style={{color:"white",fontSize:"0.75rem"}}>©Copyright E-Kart 2024 built with react-redux</p>
         </div>
     </>
   )

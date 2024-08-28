@@ -632,7 +632,7 @@ export const store = configureStore({
 the final component file will be like
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { decrement, increment, reset } from '../redux/slice';
+import { decrement, increment, reset } from '../redux/slice'; //make sure that this is imported
 
 function Counter() {
   // Component can access the state by useSelector hook
