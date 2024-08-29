@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { emptyCart, removeFromCart } from "../redux/cartSlice";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 function Cart() {
@@ -103,7 +103,7 @@ function Cart() {
           <p>Your cart is empty!</p>
         </div>
       )}
-      <ToastContainer autoClose={1000}/>
+
     </>
   );
 }
