@@ -1,11 +1,19 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart } from "../redux/cartSlice";
+import { emptyCart, removeFromCart } from "../redux/cartSlice";
+import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function Cart() {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cartReducer);
+  const navigate = useNavigate();
   // console.log(cart);
+  const handleCart = () =>{
+    toast.success('Your order is placed!!!');
+    dispatch(emptyCart());
+    navigate('/');
+  }
   return (
     <>
       {cart?.length > 0 ? (
@@ -67,7 +75,7 @@ function Cart() {
                       ?.toFixed(2)}
                   </span>
                 </h5>
-                <button className="btn btn-success rounded w-100">
+                <button className="btn btn-success rounded w-100" onClick={handleCart}>
                   CHECKOUT
                 </button>
               </div>
@@ -95,6 +103,7 @@ function Cart() {
           <p>Your cart is empty!</p>
         </div>
       )}
+      <ToastContainer autoClose={1000}/>
     </>
   );
 }
