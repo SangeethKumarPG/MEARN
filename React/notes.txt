@@ -661,6 +661,12 @@ export default Counter
 if we want to pass data to action function, we need to pass the data argument to the particular action function and to access the data, we must use 
 data.payload.
 
+NOTE
+====
+When using ToastContainer of react-toastify.
+1) make sure to import the css file along with the ToastContainer component where you place the ToastContainer.
+2) only place one ToastContainer (if using multiple containers define the container id's. make sure that another ToastContainer is not present in the immediate parent or child)
+3) we can call the toast function from any component.
 
 
 
