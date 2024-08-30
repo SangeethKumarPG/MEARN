@@ -661,6 +661,82 @@ export default Counter
 if we want to pass data to action function, we need to pass the data argument to the particular action function and to access the data, we must use 
 data.payload.
 
+Thunk
+=====
+Redux is a syncronous operation. File read/write, api calls are asynchronous operation; so to deal with asynchronous operation in redux,
+we are using Redux Thunk. Thunk is not a part of slice. It is a seperate method in redux toolkit.
+
+When creating thunk, we define a thunk function in the slice file. the thunk is middleware feature in redux for asynchronous operations.
+we must import the createAsyncThunk from @reduxjs/toolkit. then define a function. It uses promises.
+the first argument is 'nameof the slice/nameof the thunk function'
+eg: export const fetchRestaurant = createAsyncThunk('restaurantSlice/fetchRestaurant', ()=>{
+    const result = axios.get('./restaurant.json').then(response=>response.data);
+    console.log("Response from thunk");
+    console.log(result);
+    return result;
+}) is the thunk function.
+and the slice is const restarantSlice = createSlice({
+    name:"restaurantSlice",
+    initialState : {
+        loading: false, //pending state means, api call in progress
+        allRestaurants : [], //resolve state
+        error:"" //rejected state
+    }
+
+})
+
+The thunk action functions are stored under extraReducers function(key). it accepts a builder as argument.
+For every case of promise (pending, fullfilled, rejected), we need to handle them and set the appropriate states.
+
+inside extraReducers:(builder)=>{
+    //we need to define 
+    builder.addCase(thunkFunctionName.stateOfPromise,   (state, action)=>{
+        //set states
+        //get data from action.payload
+        // if error get the error message from action.error.message
+
+        // Note that in the pending state there is no need to pass the action argument
+    })
+} 
+
+the entire file slice file look like,
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from 'axios'
+//Api call or asynchronous function call using Thunk
+export const fetchRestaurant = createAsyncThunk('restaurantSlice/fetchRestaurant', ()=>{
+    const result = axios.get('./restaurant.json').then(response=>response.data);
+    console.log("Response from thunk");
+    console.log(result);
+    return result;
+})
+
+const restarantSlice = createSlice({
+    name:"restaurantSlice",
+    initialState : {
+        loading: false, //pending state means, api call in progress
+        allRestaurants : [], //resolve state
+        error:"" //rejected state
+    },
+    extraReducers:(builder)=>{
+        builder.addCase(fetchRestaurant.pending, state=>{
+            state.loading = true;
+        }),
+        builder.addCase(fetchRestaurant.fulfilled, (state, action)=>{
+            state.loading = false;
+            state.allRestaurants = action.payload;
+            state.error = ""; 
+        }),
+        builder.addCase(fetchRestaurant.rejected,(state, action)=>{
+            state.loading = false;
+            state.allRestaurants = [],
+            state.error = action.error.message;
+        })
+    }
+
+})
+
+export default restarantSlice.reducer;
+
 NOTE
 ====
 When using ToastContainer of react-toastify.

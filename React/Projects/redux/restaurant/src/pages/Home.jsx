@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import RestaurantCard from '../components/RestaurantCard'
 import { Col, Row } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchRestaurant } from '../redux/restaurantSlice';
 
 function Home() {
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(fetchRestaurant());
+  },[])
+  
+
   return (
     <>
         <Row className='mt-2'>
