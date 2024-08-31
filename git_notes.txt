@@ -11,3 +11,6 @@ To resolve merge confilicts:
 
 For the remote end hung up unexpectedly
 do git config --global http.postBuffer 524288000 this increases the buffer size
+
+To check the size of a git repo
+git count-objects -vH
