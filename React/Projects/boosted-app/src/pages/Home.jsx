@@ -3,6 +3,8 @@ import { Row, Col, Image } from "react-bootstrap";
 import cover from "/cover-image/coverimage-crop-new-portrait.png";
 import './CommonPageStyle.css'
 import Features from "./Features";
+import Testimonials from "./Testimonials";
+import Pricing from "./Pricing";
 function Home() {
   return (
     <>
@@ -62,6 +64,13 @@ function Home() {
       <div className="container-fluid p-5">
       <Features/>
 
+      </div>
+      <div className="container-fluid p-5">
+        <Testimonials/>
+      </div>
+
+      <div className="container-fluid p-5">
+        <Pricing/>
       </div>
       
     </>

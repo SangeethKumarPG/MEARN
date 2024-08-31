@@ -6,6 +6,9 @@ import Header from './components/Header'
 import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import Features from './pages/Features'
+import Testimonials from './pages/Testimonials'
+import Pricing from './pages/Pricing'
+import Footer from './components/Footer'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -16,8 +19,10 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path="/features" element={<Features/>}/>
+        <Route path='/testimonials' element={<Testimonials/>}/>
+        <Route path="/pricing" element={<Pricing/>}/>
       </Routes>
-      
+      <Footer/>
     </>
   )
 }
