@@ -14,7 +14,7 @@ function App() {
       <Header/>
       <Routes>
         <Route path='/' element={<Home/>}/>
-        <Route path='/restaurant_view' element={<RestaurantView/>}/>
+        <Route path='/restaurant_view/:id' element={<RestaurantView/>}/>
       </Routes>
       <Footer/>
     </>

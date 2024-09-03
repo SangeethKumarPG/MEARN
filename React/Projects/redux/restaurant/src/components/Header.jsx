@@ -1,9 +1,11 @@
 import React from "react";
-import { Navbar, Container } from "react-bootstrap";
+import { Navbar, Container, Nav } from "react-bootstrap";
 import logo from "/logonew.png";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { searchRestaurants } from "../redux/restaurantSlice";
 function Header() {
-  console.log(logo);
+  const dispatch = useDispatch();
   return (
     <>
       <Navbar variant="dark">
@@ -20,6 +22,17 @@ function Header() {
               Food<span className="text-warning">Circle</span>
             </Navbar.Brand>
           </Link>
+          <Nav>
+            <Nav.Link>
+              <input
+                type="text"
+                className="form-control mt-1"
+                placeholder="Search by neighborhood"
+                style={{ width: "40%", marginRight: "20rem" }}
+                onChange={(e) => dispatch(searchRestaurants(e.target.value))}
+              />
+            </Nav.Link>
+          </Nav>
         </Container>
       </Navbar>
     </>

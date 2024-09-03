@@ -737,6 +737,28 @@ const restarantSlice = createSlice({
 
 export default restarantSlice.reducer;
 
+NOTE:
+=====
+the name we are using inside the use selector is the 'key' name of the slice in store(inside the reducers)
+this will give all the objects in the state. we can access the objects we need.
+
+Dynamically binding data to url
+===============================
+<Route path='/restaurant_view/:id' element={<RestaurantView/>}/>
+if we use /:varible we are telling react that the variable(path) is passed dynamically.
+eg: 
+In the location we want to redirect we should use <Link to={`/restaurant_view/${restaurant?.id}`} style={{textDecoration:"none"}}>
+
+note the structure of to= .
+
+the useParams() is a hook of react router dom to get the path data. here we use it like
+
+const data = useParam();
+const id = data.id;
+
+or use it like
+const {id} = useParam();
+
 NOTE
 ====
 When using ToastContainer of react-toastify.
