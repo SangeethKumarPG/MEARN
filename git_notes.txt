@@ -14,3 +14,12 @@ do git config --global http.postBuffer 524288000 this increases the buffer size
 
 To check the size of a git repo
 git count-objects -vH
+
+
+=====================Adding to a new repository ===============================
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/SangeethKumarPG/RestaurantThunkProject.git
+git push -u origin main
