@@ -19,7 +19,7 @@ function Auth({ register }) {
       >
         <div className="container w-75">
           <h5>
-            <Link
+            <Link to={"/"}
               style={{
                 textDecoration: "none",
                 fontWeight: "bolder",
