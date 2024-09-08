@@ -1,0 +1,14 @@
+NODE js
+=======
+- Not a programming language.
+- It is a runtime environment for javascript to run javascript code outside the webbrowser.
+- built using V8 engine (same as that of google chrome)
+- Single threaded. 
+- it can accept multiple request at a time. 
+
+
+Node js is single threaded, How it process multiple requests at a time?
+-----------------------------------------------------------------------
+explain the execution of js. event loop, call stack, microtask queue, callback queue.
+
+NB: phases of js program. Memory creating phase and execution phase.

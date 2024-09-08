@@ -1,0 +1,85 @@
+Database
+--------
+- used to store the data. 
+
+Two types of databases:
+1) Realational databases
+2) non Realational databases.
+
+1) Relational Database:
+eg: mysql, SQLserver.
+- data is stored in table.
+
+2) Non Relational Database:
+eg: mongodb, dynamodb
+- data is stored as documents(json data).
+
+    eg: 
+        {
+            "id":123,
+            "name":'Sean',
+            "email":'sean@gmail.com',
+            "address":{
+                'houseno':1156,
+                'area':'newyork'
+            }
+        }
+
+- a particular user's data is called document. When a new data is coming it will be created
+    as new document.
+- easier to connect multiple data sources. 
+- can store a large amount of data without affecting the perfomance.
+- we can store any data. we don't need to create a schema. we can change the structure of the data any time. 
+- we don't need to use complex joins like in SQL.
+- high availability and fault tolerance.
+- The table in non relational database is called collection.
+- Each row in non relational database is called document.
+
+NOTE
+====
+For installation first we need to install mongodb community server.
+Then after setting it up install mongodb compass.
+
+To start service brew services start mongodb-community@version
+To stop service brew services stop mongodb-community@version
+
+Commands
+--------
+Every collection needs to have an id which is unique. If you don't pass one mongodb will automatically create one id.
+1) show databases - to list all databases
+2) use database dbname - to use a particular database
+3) show collections - to list all collections in the selected database
+4) db.collection_name.find() - to list all documents that is inserted to a database.
+5) db.findOne({"key":"value"}) - to get a particular document based on the passed object
+    eg:db.users.findOne({"email":"sean@gmail.com"})
+    returns the document where the email is sean@gmail.com
+
+6) db.collection_name.find().sort({"key":1}) - sort the key values in ascending order.
+    if we pass "-1" it will sort by descending order.
+7) db.collection_name.find().limit(n) - will fetch the n documents from the collection.
+8) db.collection_name.insertOne(document in json format or js object format) - insert one document into the collection. We don't need to specify the position.
+    eg:
+        db.users.insertOne({"name":"Heather", "email":"heather@gmail.com","age":29})
+
+9) db.collection_name.insertMany([document1, document2,....])
+    eg:
+        db.users.insertMany([{"name":"Peter","email":"peter@gmail.com", "age":34}, {"name":"Andrew","email":"andrew@gmail.com","age":30}])
+10) db.collection_name.countDocuments() - to get the number of records in a collection.
+11) db.collection_name.find({key:{$gt:value}}) - to find documents with the specified key value greater than the specified
+    eg: db.users.find({age:{$gt:30}})
+12) db.collection_name.find({key:{$gte:value}}) - to find documents with the specified key value greater than or equal to the specified
+    eg: db.users.find({age:{$gte:30}})
+13) db.collection.find({key:{$lt:value}}) - less than 
+14) db.collection.find({key:{$lte:value}}) - less than equal to
+15) db.collection_name.find({$and:[{key:{$gt:value}},{key:{$lt:value}}]}) - to find the documents with in a given range.
+    eg:
+        db.users.find({$and:[{age:{$gt:30}}, {age:{$lt:40}}]})
+16) db.collection_name.updateOne({key:value},{$set:{key:value}}) - update one document having the specified key value.
+    eg:
+        db.users.updateOne({name:"Sean"},{$set:{age:50}})
+17) updateMany() is similar to updateOne but we can only set one value for multiple documents.
+
+
+    
+
+
