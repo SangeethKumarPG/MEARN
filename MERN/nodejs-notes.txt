@@ -12,3 +12,113 @@ Node js is single threaded, How it process multiple requests at a time?
 explain the execution of js. event loop, call stack, microtask queue, callback queue.
 
 NB: phases of js program. Memory creating phase and execution phase.
+
+refer api.txt
+
+How to create nodejs application?
+---------------------------------
+1) create a folder with application name
+2) navigate to the folder
+3) run npm init -y to make the nodejs application.
+4) configure the script Object in package.json
+
+file system 
+------------
+Node js file system allows us to work with files. common methods:
+
+require() is used to import modules
+var fs = require('fs') //import the file system module
+create: fs.open();
+update : fs.writeFile();
+read : fs.readFile();
+delete : fs.unlink();
+rename : fs.rename();
+
+eg: const fs = require("fs");
+const getFileData = () => {
+  fs.readFile("./sample.txt",'utf-8' ,(err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(data);
+      
+    }
+  });
+};
+
+getFileData();
+
+// The 2nd argument to read readFile() is the output format. By default if you don't provide this you will get a buffer.
+// If you want to convert this you can also use data.toString();
+
+Exporting module
+-----------------
+To export a module in nodejs
+we need to use module.exports = {functionName} in the source file
+then use require() to import the exported file in the destination file.
+This is because the node.js uses ES5 standard, whereas in react it uses ES6(export default functionName).
+
+http module
+------------
+- used to create a server that can handle http requests. 
+- it is an inbuilt module.
+- http module can create a server that listens to a port and give response back to client.
+- createServer() is used to create http server.
+
+eg:
+const http = require('http')
+http.createServer((req,res)=>{
+    res.write("Hello !!!")
+    res.end(); //to stop connection
+}).listen(4000);
+
+event module
+------------
+used for creation of an event and trigger it whenever required. 
+steps:
+- import events module
+- create an object of EventEmitter() inside events
+- .on() is used to create an event
+- .emit() is used to call the event
+eg: 
+    const events = require('events')
+const eventEmitter = new events.EventEmitter();
+eventEmitter.on('onDisplay',()=>{
+    console.log("Event triggered")
+});
+
+eventEmitter.emit('onDisplay')
+
+Backend Concepts
+----------------
+Client Server Architecture
+--------------------------
+- Client is sending the request, server resolves the request and send back the response to the client.
+- API : Application Programming interface
+        For communication between client(frontend) and server (Backend)
+
+- CRUD operations: Basic database operations. (CREATE, READ, UPDATE, DELETE)
+- RESTFUL API : it uses http as api creation (follows the rule of HTTP)
+                get, post, put, delete - uses this methods, pass data as JSON.
+                request in post method should be passed in body.
+
+- CORS : cross origin resource sharing. frontend is running in one url in a paticular port.
+            Backend is running in a differrent port in same url or differrent url. in this case the 
+            browser blocks the request. to resolve this issue CORS module is used. 
+
+
+Backend Application Creation for Project Fair
+=============================================
+1) server creation : create a folder. then run npm init -y inside the folder.
+    - install modules express, cors, dotenv
+        express : used to create http server
+        cors : used to manage cors issue
+        dotenv : is used to access data inside .env file using process.env
+
+        to install them we use "npm install express cors dotenv"
+        
+
+
+
+
+
