@@ -117,7 +117,22 @@ Backend Application Creation for Project Fair
 
         to install them we use "npm install express cors dotenv"
         
+        MiddleWares : it acts between request and response. it has the ability to control request response cycle.
+        for injecting middlewares we use .use(middleware_name)
 
+  nodemon: an npm module used to restart the server automatically when changes are made in the project.
+
+  MVC Architecture
+  ----------------
+  Model View Controller 
+  This a common architecture pattern followed by web applications.
+  View: frontend, it can be react angular or vue, from frontend we are sending request, for each request we have specified path,
+        and http method. 
+        Routing : part of backend, where all routes are configured.
+  Controller : It contains the logic to resolve the request.
+  Model : structure/ schema in which the data need to be stored.
+          DB : where data is stored.
+  
 
 
 
