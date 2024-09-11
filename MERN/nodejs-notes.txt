@@ -133,6 +133,82 @@ Backend Application Creation for Project Fair
   Model : structure/ schema in which the data need to be stored.
           DB : where data is stored.
   
+MongoDB Connection with nodejs application
+==========================================
+1) Login or register to mongodb atlas
+2) create a project by giving project name.
+3) after creating the project create a cluster
+    - select the free plan
+    - give a cluster name
+    - in the next screen create a database user. A default user will be shown here with you mongodb account username. and a default generated password. copy this password.
+    - click done.
+    - after the cluster is created click on the load sample data option.
+    - after the data is loaded. click on the browse collections option. create database.
+    - provide a database name and collection name.
+    - click on the network access tab. click on the edit button in the list and choose allow all access option.
+    - go to database tab click on the drivers option. under this there will be connection string. copy this.
+4) create a .env file in the root folder of your project. create a variable and assign the copied connection string to this.
+    - edit the user name, database password 
+5) install mongoose from npm (npm i mongoose)
+6) create a connection js file in your project.
+    -   // import mongoose
+        const mongoose = require('mongoose');
+
+        const connectionString = process.env.DATABASE
+
+        mongoose.connect(connectionString).then((res)=>{
+            console.log("MongoDB connected Successfully!!!");
+        }).catch((err)=>{
+            console.log("Connection Error",err);
+        })
+
+    import the connection file wherever you want to use the connection
+    with require('connection.js')
+
+7) create a Model folder.
+  - inside model folder create a modelSchema js file for the particular model
+  - eg: 
+        // import mongoose
+        const mongoose = require('mongoose')
+
+        // create schema
+        const userSchema = new mongoose.Schema({
+            username:{
+                type:String,
+                require:true
+            },
+            email:{
+                type:String,
+                require:true,
+                unique:true
+            },
+            password:{
+                type:String,
+                require:true
+            },
+            github:{
+                type:String
+            },
+            linkedin:{
+                type:String
+            },
+            profile:{
+                type:String
+            }
+        })
+
+        // create model (name should be same as collection name)
+        // first argument is the name of collection in the mongodb atlas, sencond argument is 
+        // the schema object we created in the file.
+        const users = mongoose.model("users",userSchema);
+
+
+        // export the model
+        module.exports = users;
+
+            
+
+
 
 
 

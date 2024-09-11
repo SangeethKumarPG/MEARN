@@ -4,6 +4,9 @@ require("dotenv").config();
 //importing express
 const express = require("express");
 
+// importing the database connection file
+require('./DB/connections')
+
 //importing cors
 const cors = require("cors");
 

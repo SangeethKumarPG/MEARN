@@ -80,6 +80,4 @@ Every collection needs to have an id which is unique. If you don't pass one mong
 17) updateMany() is similar to updateOne but we can only set one value for multiple documents.
 
 
-    
-
 
