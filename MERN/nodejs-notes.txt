@@ -140,7 +140,7 @@ MongoDB Connection with nodejs application
 3) after creating the project create a cluster
     - select the free plan
     - give a cluster name
-    - in the next screen create a database user. A default user will be shown here with you mongodb account username. and a default generated password. copy this password.
+    - in the next screen create a database user. A default user will be shown here with you mongodb account username. and a default generated password. copy this password. if you are setting your own password make sure that you are not using special characters.
     - click done.
     - after the cluster is created click on the load sample data option.
     - after the data is loaded. click on the browse collections option. create database.
@@ -206,8 +206,8 @@ MongoDB Connection with nodejs application
         // export the model
         module.exports = users;
 
-            
-
+NOTE: in this DATABASE = mongodb+srv://sangeeth695:AJjjbkbyiUBc5x0f@cluster0.vjgwu.mongodb.net/<projectfair>?retryWrites=true&w=majority&appName=Cluster0 
+ the <> the database name. if database is not specified in the .env file it will create a test database. here projectfair is the database name
 
 
 

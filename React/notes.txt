@@ -771,3 +771,12 @@ NOTE
 ====
 If you are using cards in your layout and if the size of the cards are not uniform we can set set a static height to them so that they look 
 uniform.
+
+useNavigate() is a hook in react-router-dom. it is used to redirect to another path.
+we must import the hook from react-router-dom module.
+then create a reference to this state.
+then call the navigate function with the path
+eg:
+const navigate = useNavigate();
+navigate("/login");
+

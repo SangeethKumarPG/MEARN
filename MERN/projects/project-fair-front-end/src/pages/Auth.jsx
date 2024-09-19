@@ -1,10 +1,52 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React,{useState} from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Col, Row } from "react-bootstrap";
 import logoDark from "/projectfairlogo.svg";
+import {registerApi} from "../services/allApi"
+import {toast} from "react-toastify"
 
 function Auth({ register }) {
   const registerForm = register ? true : false;
+  const navigate = useNavigate();
+  const [userData, setUserData] = useState({
+    username:"",
+    email:"",
+    password:""
+  })
+  const handleRegister =async (e)=>{
+    e.preventDefault();
+    const {username, email, password} = userData;
+    if(!username || !email || !password){
+      //alert("Please fill the form completely.")
+      toast.warning("Please fill the form completely!!")
+    }else{
+      //alert(`${username}, ${email}, ${password}`);
+      const result = await registerApi(userData);
+      if(result.data == 'Account created successfully!'&& result.status==200){
+        toast.success(`Account for ${username} Created Succesfully!`)
+        //navigate to loginpage after successful registration
+        navigate("/login");
+      }else{
+        toast.error(result?.response?.data)
+      }
+    }
+    setUserData({
+      username:"",
+      email:"",
+      password:""
+    })
+  }
+
+  const handleLogin = async(e)=>{
+    e.preventDefault();
+    const {email, password} = userData;
+    if(!email || !password){
+      toast.warning("Please enter username and password")
+    }else{
+      toast.success("Login Success!");
+    }
+
+  }
   return (
     <>
       <div
@@ -46,31 +88,35 @@ function Auth({ register }) {
                   {registerForm ? (
                     <>
                       <h6 className="text-center">Signup</h6>
-                      <input type="text" className="form-control rounded" placeholder="Name"/>
-                      
+                      <input type="text" className="form-control rounded" placeholder="Name"
+                        value={userData.username}
+                        onChange={(e)=>setUserData({...userData,username:e.target.value})} />
+
                     </>
                   ) : (
-                    <>
-                      <h6 className="text-center">Login</h6>
-                    </>
-                  )}
+                      <>
+                        <h6 className="text-center">Login</h6>
+                      </>
+                    )}
                   <div className="mt-3 mb-3">
-                  <input type="text" className="form-control rounded" placeholder="Email"/>
+                    <input type="text" className="form-control rounded" placeholder="Email" onChange={(e)=>setUserData({...userData,email:e.target.value})}
+                      value={userData.email}/>
                   </div>
                   <div className="mt-3 mb-3">
-                  <input type="password" className="form-control rounded" placeholder="Password"/>
+                    <input type="password" className="form-control rounded" placeholder="Password" onChange={(e)=>setUserData({...userData,password:e.target.value})} value={userData.password}
+                    />
                   </div>
                   {registerForm ? 
                     <div>
-                      <button className="btn btn-success form-control">Register</button>
+                      <button className="btn btn-success form-control" type="button" onClick={handleRegister}>Register</button>
                       <p className="text-center">Already a user? click here to <Link className="ms-2" to="/login" style={{textDecoration:"none"}}>login</Link></p>
                     </div>
                     :
                     <div>
-                      <button className="btn btn-success form-control">Login</button>
-                      <p className="text-center">Not registered yet? click here to <Link className="ms-2" to="/register" style={{textDecoration:"none"}}>register</Link></p>
+                      <button className="btn btn-success form-control" type="button" onClick={handleLogin}>Login</button>
+                      <p className="text-center">Not registered yet? click here to <Link className="ms-2" to="/register" style={{textDecoration:"none"}} type="button">register</Link></p>
                     </div>
-                
+
                   }
                 </form>
               </Col>
