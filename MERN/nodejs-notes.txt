@@ -209,6 +209,35 @@ MongoDB Connection with nodejs application
 NOTE: in this DATABASE = mongodb+srv://sangeeth695:AJjjbkbyiUBc5x0f@cluster0.vjgwu.mongodb.net/<projectfair>?retryWrites=true&w=majority&appName=Cluster0 
  the <> the database name. if database is not specified in the .env file it will create a test database. here projectfair is the database name
 
+JWT
+====
+- Json web token. It defines a compact and self contained way for securely tranferring information between parties and json objects.
+- when a user is logged in the backend will create a token and send it to the frontend as response. we are storing this token in the session storage, by this when the user close the tab or browser window the token is removed.
+- for the subsequent requests the client will send this token in the request to the server. - server verifies the integrity of the token and process the request if it valid. 
+To implement this install jsonwebtoken node package in the backend application.
+after this require the module in the controller.
+once the user is Successfully logged in sign the jwt token with a unique parameter of the user such as userid, and salt it wil a unique string or key to make it more secure.
+const jwt = require('jwttoken');
+//To sign token
+jwt.sign(arhument1, argument2)
+argument1 : The information that needs to be securely transmitted.
+argument2 : To encrypt the argument1.
+
+//To verify the token
+jwt.verify(token, salt/secret )
+
+we will pass the token in request header
+
+like:
+const reqHeader = {
+        'Authorization':`Bearer ${token}`
+}
+
+
+
+
+
+
 
 
 

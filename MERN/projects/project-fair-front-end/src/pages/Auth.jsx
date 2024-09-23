@@ -2,7 +2,7 @@ import React,{useState} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Col, Row } from "react-bootstrap";
 import logoDark from "/projectfairlogo.svg";
-import {registerApi} from "../services/allApi"
+import {registerApi, loginApi} from "../services/allApi"
 import {toast} from "react-toastify"
 
 function Auth({ register }) {
@@ -30,11 +30,7 @@ function Auth({ register }) {
         toast.error(result?.response?.data)
       }
     }
-    setUserData({
-      username:"",
-      email:"",
-      password:""
-    })
+
   }
 
   const handleLogin = async(e)=>{
@@ -43,9 +39,24 @@ function Auth({ register }) {
     if(!email || !password){
       toast.warning("Please enter username and password")
     }else{
-      toast.success("Login Success!");
+      const result = await loginApi(userData);
+      console.log("Login result : ",result);
+      if(result.status === 200){
+        sessionStorage.setItem("loggedUser",JSON.stringify(result.data.data));
+        sessionStorage.setItem("token",result.data.token);
+        toast.success("Login Success!");
+        navigate("/")
+      }else if(result.status == 401 ){
+        toast.error("Invalid email or password");
+      }else{
+        toast.error("Something went wrong")
+      }
     }
-
+    setUserData({
+      username:"",
+      email:"",
+      password:""
+    })
   }
   return (
     <>

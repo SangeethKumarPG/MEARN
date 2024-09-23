@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useState, useEffect} from "react";
 import { Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import cover_1 from "../assets/cover-photo-1-clear.png";
@@ -6,6 +6,13 @@ import ProjectCard from "../components/ProjectCard";
 import './Home.css'
 
 function Home() {
+  const [isLogin, setIsLogin] = useState(false);
+  useEffect(() => {
+    if(sessionStorage.getItem("token")){
+      setIsLogin(true);
+    }
+  }, [])
+
   return (
     <>
       <div
@@ -23,11 +30,23 @@ function Home() {
                 One stop destination for many web projects{" "}
               </h6>
             </div>
-            <Link to="/register">
-              <button className="btn btn-outline-dark my-2 ms-5">
-                Get Started →
-              </button>
-            </Link>
+            {
+              isLogin? (
+                <Link to="/dashboard">
+                  <button className="btn btn-outline-dark my-2 ms-5">
+                    Manage Projects →
+                  </button>
+                </Link>
+
+              ):(
+                  <Link to="/register">
+                    <button className="btn btn-outline-dark my-2 ms-5">
+                      Get Started →
+                    </button>
+                  </Link>
+
+                )
+            }
           </Col>
           <Col
             md={6}
@@ -39,7 +58,7 @@ function Home() {
       </div>
       <div className="container-fluid bg-body-tertiary">
         <h2 className="text-center mt-2 text-dark">Explore our Projects</h2>
-       
+
         <div className="container">
           <div className="row scroll-container">
             <div className="col-md-4 justify-content-center d-flex p-2">
