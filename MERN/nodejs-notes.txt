@@ -233,7 +233,46 @@ const reqHeader = {
         'Authorization':`Bearer ${token}`
 }
 
+middleware is used to verify the toke in the serverside. Middele ware acts between the request and response. 
+- It has the ability to control request response cycle.
+- eg: if a user sends a request from the frontend to the backend. In the backend we need to check weather the user is loggedin. The request from the fronend first reaches the router, we need to check if the user is authorized to perform the desired operation before sending the request to controller. We can use a middle ware in this case.
 
+After the middleware operation is completed we use the next() method to route the request to the controller.
+
+There are two types of middlewares:
+1. Application middlewares:
+We use them for the entire application. We define them in index.js
+we use 
+serverName.use(middlewareName);
+2. Routing middlewares:
+We use them for specific routes. for this we add the name of middleware as the second argument of the router.
+syntax:
+router.post("path/to/route",middleware_name,controller_name)
+
+
+in the middleware we will get the token from request.headers[]array. 
+eg:
+ const token = req.headers["authorization"];
+
+sample middleware file:
+const jwt = require("jsonwebtoken");
+
+const jwtMiddleWare = (req, res, next)=>{
+  console.log("Inside jwt middlware");
+  const token = req.headers["authorization"].split(' ')[1];
+  //console.log(token);
+  try{
+    const jwtResponse = jwt.verify(token,"userpwd123");
+    console.log(jwtResponse);
+    req.payload = jwtResponse.userId;
+    next();
+
+  }catch(err){
+    console.log(err);
+    res.status(401).json("Authorization failed please login");
+  }
+}
+module.exports = jwtMiddleWare;
 
 
 

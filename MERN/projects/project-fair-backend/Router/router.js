@@ -1,12 +1,16 @@
 // import express
 const express = require("express");
 
+
 //get router instance from express
 const router = new express.Router();
 
 // importing controller
 const userController = require('../Controllers/userController')
 const projectController = require('../Controllers/projectController')
+
+// importing jwt MiddleWare
+const jwtMiddleWare = require("../MiddleWares/jwtMiddleWare")
 
 // differrent paths for resolving requests
 // router.get("/user/getUserDetails", (req, res) => {
@@ -15,7 +19,8 @@ const projectController = require('../Controllers/projectController')
 router.post("/user/register", userController.register);
 router.get("/user/getUserDetails", userController.getUserDetails);
 router.post("/user/login",userController.login);
-router.post("/project/addproject",projectController.addProject);
+//adding middle ware for router
+router.post("/project/addproject",jwtMiddleWare,projectController.addProject);
 
 
 // export router

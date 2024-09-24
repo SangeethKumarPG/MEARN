@@ -22,6 +22,10 @@ pfServer.use(cors());
 // use middleware to convert JSON data to js object
 pfServer.use(express.json());
 
+//adding app middleware(demo purpose)
+//const appMiddleWare = require("../MiddleWares/appMiddleWares"//)
+//pfServer.use(appMiddleWare);
+
 //conntect the router
 pfServer.use(router);
 
