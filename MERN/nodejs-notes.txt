@@ -274,7 +274,8 @@ const jwtMiddleWare = (req, res, next)=>{
 }
 module.exports = jwtMiddleWare;
 
-
+When we are directly accessing the form data from backed, we will get errors,
+so to fix this we use a npm module called multer.
 
 
 

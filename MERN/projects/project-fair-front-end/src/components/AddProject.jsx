@@ -54,6 +54,23 @@ function AddProject() {
         'Authorization':`Bearer ${token}`
       }
       const result = await addProjectApi(reqBody, reqHeader);
+      if(result.status === 200){
+        toast.success(`${title} uploaded successfully!!`);
+        setProjectDetails({
+          title:"",
+          language:"",
+          github:"",
+          website:"",
+          overview:"",
+          projectImage:""
+        })
+
+      }else if(result.status === 409) {
+        toast.error(title," Project already exist");
+      }else{
+        toast.error("Upload failed!")
+      }
+      handleClose();
     }
   } 
 

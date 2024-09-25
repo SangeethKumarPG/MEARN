@@ -20,6 +20,14 @@ const projectSchema = new mongoose.Schema({
   overview:{
     type:String,
     require:true
+  },
+  userId:{
+    type:String,
+    require:true
+  },
+  github:{
+    type:String,
+    require:true
   }
 
 
