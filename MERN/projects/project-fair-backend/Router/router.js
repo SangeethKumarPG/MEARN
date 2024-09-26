@@ -25,7 +25,9 @@ router.post("/user/login",userController.login);
 //adding middle ware for router
 //adding multer middleware after jwt middleware
 router.post("/project/addproject",jwtMiddleWare,multerConfig.single('projectImage'),projectController.addProject);
-
+router.get("/project/homeproject", projectController.getHomeProjects);
+router.get("/project/allProjects",jwtMiddleWare, projectController.getAllProjects);
+router.get("/project/userProjects", jwtMiddleWare, projectController.getUserProjects);
 
 // export router
 module.exports = router;

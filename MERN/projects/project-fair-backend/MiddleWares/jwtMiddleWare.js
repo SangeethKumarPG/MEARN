@@ -2,6 +2,9 @@ const jwt = require("jsonwebtoken");
 
 const jwtMiddleWare = (req, res, next)=>{
   console.log("Inside jwt middlware");
+  if(!req.headers['authorization']){
+    res.status(401).json("Authorization failed, please login");
+  }
   const token = req.headers["authorization"].split(' ')[1];
   //console.log(token);
   try{

@@ -4,13 +4,20 @@ import { Link } from "react-router-dom";
 import cover_1 from "../assets/cover-photo-1-clear.png";
 import ProjectCard from "../components/ProjectCard";
 import './Home.css'
+import {getHomeProjects} from '../services/allApi'
 
 function Home() {
+  
   const [isLogin, setIsLogin] = useState(false);
+  const getHomeProjectItems = async ()=>{ 
+    const result = await getHomeProjects();
+    console.log(result)
+  }
   useEffect(() => {
     if(sessionStorage.getItem("token")){
       setIsLogin(true);
     }
+    getHomeProjectItems();
   }, [])
 
   return (
