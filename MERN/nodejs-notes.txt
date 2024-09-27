@@ -277,7 +277,14 @@ module.exports = jwtMiddleWare;
 When we are directly accessing the form data from backed, we will get errors,
 so to fix this we use a npm module called multer.
 
-NOTE: All the paths in the router should start with "/". The ending / is not required. 
+NOTE: All the paths in the router should start with "/". The ending / is not required.
+
+To serve files such as images from the backend to the frontend we need to expose the folder in the server where the image is actually stored. 
+For this inside the index.js we define
+serverName.use("url_path", express.static("./file_path "))
+
+Use the server url/url_path/filename to access the file in the frontend.
+
 
 
 

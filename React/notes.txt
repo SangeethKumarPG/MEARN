@@ -780,3 +780,6 @@ eg:
 const navigate = useNavigate();
 navigate("/login");
 
+Note
+=====
+Maximum Call stack exceeded error means that you are using two methods that have the same name inside a single file.

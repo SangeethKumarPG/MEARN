@@ -8,8 +8,9 @@ import { Col, Row} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import gitHub from '../assets/github-original.svg'
 import linkIcon from '../assets/link-icon.svg'
+import {BASE_URL} from '../services/baseurl';
 import './CardLayout.css'
-function ProjectCard({isInProjectPage}) {
+function ProjectCard({isInProjectPage, project}) {
     const isProjectPage = isInProjectPage ? true:false;
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -17,32 +18,32 @@ function ProjectCard({isInProjectPage}) {
   return (
     <>
     <Card className={`border rounded shadow ${isProjectPage? "card-container-projects": "card-container-home"}`} onClick={handleShow}>
-      <Card.Img variant="top" src={mediaPlayerCardImage} className={`p-1 ${isProjectPage? "card-container-project-image": "card-container-home-image"}`} />
+      <Card.Img variant="top" src={`${BASE_URL}/uploads/${project?.projectImage}`} className={`p-1 ${isProjectPage? "card-container-project-image": "card-container-home-image"}`} />
       <Card.Body>
-        <Card.Title className='text-dark text-center'>Media Player</Card.Title>
+        <Card.Title className='text-dark text-center'>{project?.title}</Card.Title>
       </Card.Body>
     </Card>
       <Modal show={show} onHide={handleClose} size='lg'>
         <Modal.Header closeButton>
-          <Modal.Title>Media Player</Modal.Title>
+          <Modal.Title>{project?.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
             <Row>
                 <Col md={6}>
-                    <img src={mediaPlayerCardImage} alt="" style={{width:"20rem"}}/>
+                    <img src={`${BASE_URL}/uploads/${project?.projectImage}`} alt="" style={{width:"20rem"}}/>
                 </Col>
                 <Col md={6}>
                     <h4>Description : </h4>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique nam magnam incidunt doloribus unde beatae! Blanditiis, exercitationem quasi ut ab reprehenderit quae, qui nulla eligendi illo vitae, ullam ad corrupti?</p>
+                    <p>{project?.overview}</p>
                     <h4>Technologies : </h4>
-                    <p>Languages : JavaScript</p>
+                    <p>{project?.language}</p>
                 </Col>
             </Row>
 
         </Modal.Body>
         <div className='d-flex mt-3'>
-            <Link className='ms-5 me-3'><img src={gitHub} alt="" /></Link>
-            <Link> <img src={linkIcon}/></Link>
+            <Link to={project?.github} target="_blank" className='ms-5 me-3'><img src={gitHub} alt="" />Github Link</Link>
+            <Link to={project?.website} target="_blank"> <img src={linkIcon}/>Website</Link>
 
         </div>
         <hr/>

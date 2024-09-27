@@ -29,6 +29,9 @@ pfServer.use(express.json());
 //conntect the router
 pfServer.use(router);
 
+//Expose the path to the image uploads folder from server
+pfServer.use('/uploads',express.static("./uploads"))
+
 // provide port number
 const port = 4000;
 

@@ -7,11 +7,14 @@ import './Home.css'
 import {getHomeProjects} from '../services/allApi'
 
 function Home() {
-  
+
+  const [homeProject, setHomeProject]= useState([]);
+
   const [isLogin, setIsLogin] = useState(false);
   const getHomeProjectItems = async ()=>{ 
     const result = await getHomeProjects();
-    console.log(result)
+    //console.log(result);
+    setHomeProject(result.data);
   }
   useEffect(() => {
     if(sessionStorage.getItem("token")){
@@ -68,15 +71,15 @@ function Home() {
 
         <div className="container">
           <div className="row scroll-container">
-            <div className="col-md-4 justify-content-center d-flex p-2">
-              <ProjectCard />
+            {homeProject.length > 0 ? homeProject.map(item=>(
+               <div className="col-md-4 justify-content-center d-flex p-2">
+              <ProjectCard project={item}/>
             </div>
-            <div className="col-md-4 justify-content-center d-flex p-2">
-              <ProjectCard />
-            </div>
-            <div className="col-md-4 justify-content-center d-flex p-2">
-              <ProjectCard />
-            </div>
+
+
+            )):<p>No Project Found</p>}
+
+
           </div>
         </div>
 
