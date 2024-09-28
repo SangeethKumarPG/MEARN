@@ -31,16 +31,22 @@ function MyProject() {
                 {/* add project component */}
                 <AddProject/>
             </div>
-            <div className='p-3 mt-2 rounded-2 d-flex bg-secondary'>
-                <h5 className='text-dark'>Media Player</h5>
+            {
+               userProjects?.length > 0 ? 
+                userProjects.map(item=>(
+                      <div className='p-3 mt-2 rounded-2 d-flex bg-secondary'>
+                <h5 className='text-dark'>{item?.title}</h5>
                 <div className='d-flex ms-auto align-items-center text-dark'>
                 {/* <Link className='me-3'><img src={editIcon}/></Link> */}
                 <EditProject/>
-                <Link className='ms-3 me-3'><img src={gitIcon} alt=""/></Link>
+                <Link className='ms-3 me-3' to={item?.github} target="_blank"><img src={gitIcon} alt=""/></Link>
                 <Link><img src={trashIcon}/></Link>
             </div>
             </div>
-            
+
+                )):<p>No Projects to display</p>
+            }
+                        
         </div>
     
     </>
