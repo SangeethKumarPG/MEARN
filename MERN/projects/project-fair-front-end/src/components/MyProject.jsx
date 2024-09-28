@@ -1,12 +1,28 @@
-import React from 'react'
+import {React, useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
 import gitIcon from '../assets/github-original.svg'
 import AddProject from './AddProject'
 import trashIcon from '../assets/trash-icon.svg'
 import editIcon from '../assets/edit-icon.svg'
 import EditProject from './EditProject'
+import {getUserProjects} from '../services/allApi'
 
 function MyProject() {
+  const [userProjects, setUserProjects] = useState([]);
+  const getUserProjectsFromSource = async()=>{
+    const token = sessionStorage.getItem("token");
+    const reqHeader = {
+      'Content-Type' : "application/json",
+      'Authorization' : `Bearer ${token}`
+    }
+    const result = await getUserProjects(reqHeader);
+    //console.log(result);
+    setUserProjects(result.data);
+  }
+  useEffect(() => {
+    getUserProjectsFromSource()
+  }, [])
+  
   return (
     <>
         <div className='shadow p-5 mb-5'>

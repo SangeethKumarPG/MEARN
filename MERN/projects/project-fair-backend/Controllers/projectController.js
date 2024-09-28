@@ -46,8 +46,23 @@ exports.getHomeProjects = async(req,res)=>{
 }
 // get all projects 
 exports.getAllProjects = async(req,res)=>{
+  const searchKey = req.query.search;
+  //console.log(searchKey);
+  const searchQuery = {
+    $or:[
+      {language : {
+        $regex:searchKey, $options:'i'
+
+      }},
+
+      {title:{
+        $regex : searchKey, $options:'i'
+      }}
+
+    ] 
+  }
   try {
-    const allProjects = await projects.find();
+    const allProjects = await projects.find(searchQuery);
     res.status(200).json(allProjects);
   } catch (err) {
     console.log(err);

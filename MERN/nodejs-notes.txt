@@ -285,8 +285,33 @@ serverName.use("url_path", express.static("./file_path "))
 
 Use the server url/url_path/filename to access the file in the frontend.
 
+To search the mongodb using regex we create a query object and pass it to the find function.
+eg:
+  searchQuery = {
+    language:{
+        $regex:searchKey, $options:'i'
+      }
+  }
+This will check the language key of the collection and filter it based on the search key,
+The option is used to pass extra options such as match case, ignore case etc. The 'i' defined here used to set it to ignore case.
 
+if we have multiple conditions we need to search we can use 
+   const searchQuery = {
+    $or:[
+      {language : {
+        $regex:searchKey, $options:'i'
 
+      }},
+
+      {title:{
+        $regex : searchKey, $options:'i'
+      }}
+
+    ] 
+  }
+if we need to add time stamps to the mongodb record we need to pass {
+  timestamps:true
+} as the second parameter after the schema when creating schema. This will add a record created at and record updated fields with the record. Note that this will not reflect with the records that are already created before setting the timestamp.
 
 
 
