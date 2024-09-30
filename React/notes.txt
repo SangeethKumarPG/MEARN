@@ -783,3 +783,38 @@ navigate("/login");
 Note
 =====
 Maximum Call stack exceeded error means that you are using two methods that have the same name inside a single file.
+
+ContextApi
+==========
+Used to share states between components. For this we create a common ContextShare react component inside the src folder.
+we use the createContext() hook. to create a context.
+In our case we want to refresh the project list when a new project is added. So for this we are creating a common state. When a new project is added we update this context, and the data from the context can be accessed across components.
+import React,{useState,createContext} from "react"
+
+export const addProjectResponseContext = createContext();
+function ContextShare ({children}) {
+  // children is a predefined props name used to share data between components
+  // Creating a state that needs to be shared
+  const [addProjectResponse, setAddProjectResponse] = useState([]);
+  
+  return (
+    <>
+      <addProjectResponseContext.Provider value={{addProjectResponse, setAddProjectResponse}}> 
+          {children}
+      </addProjectResponseContext.Provider>
+
+    </>
+  )
+}
+
+export default ContextShare;
+
+here we created a common context variable outside the function, then inside the return we are passing the context as a tag. Note that we passed the .Provider as tag name. Inside the function we created a state variable and passed the state(both variable and it's setter) as props to the context context component tag. We use 'value' as the name of the prop. Make sure that you export the context variable.
+After doing this we are extracting the values of this context from the AddProject component.
+i.e, const {addProjectResponse, setAddProjectResponse} = useContext(addProjectResponseContext)
+
+when ever a new project is added we pass a value to the set method to set the context. Make sure that you import the context variable from the context file and pass the context variable name to useContext function as argument.
+
+Wherever we need the value to be accessed, in our case the MyProject component the same thing should be done. Since we need to rerender this component we pass the addProjectResponse to the useEffect().
+
+

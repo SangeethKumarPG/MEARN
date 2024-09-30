@@ -1,13 +1,15 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import uploadIcon from "../assets/upload-icon.svg";
 import {toast} from "react-toastify"
 import {addProjectApi} from '../services/allApi'
+import {addProjectResponseContext} from "../context/ContextShare"
 function AddProject() {
   const [show, setShow] = useState(false);
-
+  // useContext() is used to access the state created inside the ContextShare
+  const {addProjectResponse, setAddProjectResponse} = useContext(addProjectResponseContext)
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [projectDetails, setProjectDetails] = useState({
@@ -55,6 +57,7 @@ function AddProject() {
       }
       const result = await addProjectApi(reqBody, reqHeader);
       if(result.status === 200){
+        setAddProjectResponse(result.data);
         toast.success(`${title} uploaded successfully!!`);
        
       }else if(result.status === 409) {

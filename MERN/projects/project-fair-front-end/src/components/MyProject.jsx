@@ -1,4 +1,4 @@
-import {React, useEffect, useState} from 'react'
+import {React, useEffect, useState, useContext} from 'react'
 import { Link } from 'react-router-dom'
 import gitIcon from '../assets/github-original.svg'
 import AddProject from './AddProject'
@@ -6,9 +6,11 @@ import trashIcon from '../assets/trash-icon.svg'
 import editIcon from '../assets/edit-icon.svg'
 import EditProject from './EditProject'
 import {getUserProjects} from '../services/allApi'
+import {addProjectResponseContext} from '../context/ContextShare'
 
 function MyProject() {
   const [userProjects, setUserProjects] = useState([]);
+  const {addProjectResponse, setAddProjectResponse} = useContext(addProjectResponseContext);
   const getUserProjectsFromSource = async()=>{
     const token = sessionStorage.getItem("token");
     const reqHeader = {
@@ -21,7 +23,7 @@ function MyProject() {
   }
   useEffect(() => {
     getUserProjectsFromSource()
-  }, [])
+  }, [addProjectResponse])
   
   return (
     <>
@@ -38,7 +40,7 @@ function MyProject() {
                 <h5 className='text-dark'>{item?.title}</h5>
                 <div className='d-flex ms-auto align-items-center text-dark'>
                 {/* <Link className='me-3'><img src={editIcon}/></Link> */}
-                <EditProject/>
+                <EditProject project={item}/>
                 <Link className='ms-3 me-3' to={item?.github} target="_blank"><img src={gitIcon} alt=""/></Link>
                 <Link><img src={trashIcon}/></Link>
             </div>
