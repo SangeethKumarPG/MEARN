@@ -81,6 +81,33 @@ exports.getUserProjects = async (req,res)=>{
   }
 }
 
+// edit the project details of a user with the specific id 
+exports.editUserProject = async (req,res) => {
+  const {id} = req.params;
+  const userId = req.payload;
+  const {title, language, github, website, overview, projectImage} = req.body;
+  const uploadedImage = req.file?req.file.filename : projectImage;
+  try {
+    const updateProject = await projects.findByIdAndUpdate({
+      _id:id
+    },{
+        title:title,
+        language:language,
+        github:github,
+        overview:overview,
+        website:website,
+        projectImage : uploadedImage,
+        userId:userId
+      },{
+        new:true
+      });
+    //saving project after update
+    await updateProject.save();
+    res.status(200).json(updateProject);
+  } catch (err) {
+   res.status(401).json(err); 
+  }
 
 
+}
 
