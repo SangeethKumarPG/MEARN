@@ -1,31 +1,19 @@
-<<<<<<< HEAD
+
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-=======
+
 import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import React from 'react'
->>>>>>> 20fe7f9 (To do list app task add, delete, mark as complete (complete))
+
 import TaskCard from "./components/TaskCard"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from "@mui/material/Button";
 import addIcon from './assets/add-icon.svg'
-<<<<<<< HEAD
-
-function App() {
-    return (
-    <>
-      <div className="container m-5 p-5 d-flex align-items-center justify-content-center">
-        <TaskCard/>
-        
-      </div>
-      <Button variant="contained" className="add-button"><img src={addIcon} /></Button>
-    </>
-=======
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -151,7 +139,6 @@ function App() {
 
     </>
 
->>>>>>> 20fe7f9 (To do list app task add, delete, mark as complete (complete))
   )
 }
 
