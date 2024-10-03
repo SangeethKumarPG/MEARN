@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import editIcon from "../assets/edit-icon.svg";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal'
@@ -6,8 +6,10 @@ import uploadIcon from '../assets/upload-icon.svg'
 import {BASE_URL} from '../services/baseurl'
 import {toast} from 'react-toastify';
 import {editUserProjects} from '../services/allApi'
+import {editProjectResponseContext} from '../context/ContextShare'
 
 function EditProject({project}) {
+  const {editProjectResponse, seteditProjectResponse} = useContext(editProjectResponseContext)
   const [show, setShow] = useState(false);
   const [preview, setPreview] = useState("");
   const [projectDetails, setProjectDetails] = useState({
@@ -20,6 +22,20 @@ function EditProject({project}) {
     projectImage:""
 
   })
+  const handleClose1 = async () => {
+    handleClose()
+    setProjectDetails({
+      id:project._id,
+      title:project.title,
+      language:project.language,
+      github:project.github,
+      website:project.website,
+      overview:project.overview,
+      projectImage:""
+
+    })
+    setPreview("")
+  }
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleUpdate = async(e)=>{
@@ -37,22 +53,33 @@ function EditProject({project}) {
       reqBody.append("overview",overview);
       preview?reqBody.append("projectImage",projectImage):
         reqBody.append("projectImage",project.projectImage);
-      const token = sessionStorage.getItem("token");
 
       if (preview){
+        const token = sessionStorage.getItem("token");
+
         const reqHeader = {
           'Content-Type':'mutlipart/form-data',
           'Authorization':`Bearer ${token}`
         }
         const result = await editUserProjects(projectDetails.id, reqBody, reqHeader)
         console.log(result);
+        if(result.status === 200){
+          handleClose()
+          seteditProjectResponse(result);
+        }
       }else{
+        const token = sessionStorage.getItem("token");
+
         const reqHeader = {
           'Content-Type':'application/json',
           'Authorization':`Bearer ${token}`
         }
         const result = await editUserProjects(projectDetails.id, reqBody, reqHeader)
         console.log(result);
+        if(result.status === 200){
+          handleClose()
+          seteditProjectResponse(result);
+        }
 
       }
 
@@ -127,7 +154,7 @@ function EditProject({project}) {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={handleClose1}>
             Cancel
           </Button>
           <Button variant="success" onClick={handleUpdate}>

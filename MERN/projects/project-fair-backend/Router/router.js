@@ -29,6 +29,7 @@ router.get("/project/homeproject", projectController.getHomeProjects);
 router.get("/project/allProjects",jwtMiddleWare, projectController.getAllProjects);
 router.get("/project/userProjects", jwtMiddleWare, projectController.getUserProjects);
 router.put("/project/editProject/:id", jwtMiddleWare, multerConfig.single("projectImage"),projectController.editUserProject)
+router.delete("project/delete/:id", jwtMiddleWare, projectController.deleteProject)
 
 // export router
 module.exports = router;
