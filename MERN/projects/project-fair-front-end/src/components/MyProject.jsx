@@ -32,7 +32,8 @@ function MyProject() {
       'Authorization' : `Bearer ${token}` 
     }
     const result = await deleteUserProject(id, reqHeader); 
-    console.log(result);
+    //console.log(result);
+    getUserProjectsFromSource();
   }
   useEffect(() => {
     getUserProjectsFromSource()
