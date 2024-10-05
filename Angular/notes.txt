@@ -1,0 +1,89 @@
+Angular
+=======
+Front end technology used to create the UI. 
+- First version of angular angular js.
+- Version 2 uses Angular with typescript.
+- typescript is a superset of javascript. It uses all the methods and properties of javascript along with
+data type declaration.
+- Used to create single page application(index.html), we load the components into this page.
+- It is a framework unlike react. 
+- We have separate file for html, css and typescript for a component.
+- We use commands to create a component. When you create a component, associated html, css, ts and a
+spec file is created. The spec file is used for unit testing. 
+- Angular is maintained by google.
+- angular application and all it's components can be created using angular-cli
+- To install angular we use npm install -g @angular/cli@version
+- The most commonly used version is 16
+- to check if angular is installed we use
+    ng v
+- to create a new application 
+    ng new <project-name>
+
+- to run the project we navigate to the project directory and can use 
+    ng serve -o (automatically opens the browser)
+    or 
+    npm start
+
+Files and folder structure of Angular project
+----------------------------------------------
+.gitignore : files and folders to be ignored by git
+.editorConfig : configuration for code editor
+angular.json : angular project configuration file. Contains information about the project such as project name,
+version, scripts, styles, and other details.
+readme.md : description of the project
+tsconfig.json : typescript configuration file.
+node_modules : contains all the depenedencies of the project.
+package.json : It include scripts, packages installed, dev dependencies etc.
+package-lock.json : detailed description of package.json.
+src folder : It includes components, assets, main.ts, index.html, style.css
+            index.html : Only html file that renders.
+            app : Base component of the application.
+            style.css : Global css file for the application.
+            main.ts : Entry point to the main typescript file. entry point to the application.
+
+While creating a component 4 files will be created.
+1. component.html
+2. component.css
+3. component.ts
+4. component.spec.ts
+
+To create a component we use the command:
+ng generate component <component-name>
+or 
+ng g c <component-name>
+
+inside the component-name.component.ts file we will see the selector of the component,
+we can place selector as a tag and use with other components.
+
+Data Binding
+============
+1. one way data binding:
+    a. ts file to html file(view)
+        {{}} - string interpolation, to pass data from ts to html.
+        [attribute] = value, called property binding. 
+            eg:<img [src] = "imagePath"/>
+    b. event binding : from html file to css file 
+        syntax : (event)="method"
+        eg: <button (click)="showName()">SHOW</button> 
+            in the ts file we can define showName() method inside the component class. like:
+            showName(){
+                alert("Hello");
+            }
+        we can also pass arguments to the functions like:
+        <button (click)="showName(7)">SHOW</button> 
+        in the ts class of the component
+         showName(count:number){
+            alert("Hello"+" "+count);
+        }
+        note that we need to decalare the type of the arguments.
+        To define undefined to the string we can use
+        variable:string|undefined;
+
+        if we have an array 
+        variable : string[] = []
+        to initialize an empty string array.
+
+        We can use "any" type to declare a variable of any type.
+        
+
+2. two way data binding:
