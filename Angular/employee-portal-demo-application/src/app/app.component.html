@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row mt-2">
+    <div class="col-md-6">
+      <div class="d-flex align-items-center justify-content-center flex-column mt-5">
+        <img [src]="profileImage" alt="">
+        <h4>Employee : <span class="text-primary">{{employeeName}}</span></h4>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <form action="" class="mt-5">
+          <div class="mt-2">
+            <input type="text" #empName class="form-control w-50" placeholder="Name"/>
+          </div>
+          <div class="mt-2">
+            <input type="text" #empDesignation class="form-control w-50" placeholder="Designation"/>
+          </div>
+          <div class="mt-2">
+            <input type="text" #empId class="form-control w-50" placeholder="Employee ID"/>
+          </div>
+          <button class="btn btn-primary form-control w-50 mt-3" (click)="updateEmployeeDetails(empName.value, empDesignation.value, empId.value)">SUBMIT</button>
+      </form>
+    </div>
+  </div>
+  <div class="row mt-2">
+    <div class="col-md-6">
+      <input [(ngModel)]="empSalary" type="text" class="form-control w-75" name="salary" placeholder="Salary">
+      <input 
+      [(ngModel)]="location"
+      type="text" name="location" class="form-control w-75 mt-3" placeholder="Location">
+      <button class="btn btn-primary form-control w-75 mt-3" (click)="getData()">Change</button>
+    </div>
+  </div>
+</div>

@@ -52,17 +52,21 @@ ng generate component <component-name>
 or 
 ng g c <component-name>
 
+unlike react there is no restriction in naming a component.
 inside the component-name.component.ts file we will see the selector of the component,
 we can place selector as a tag and use with other components.
 
+To use bootstrap in angular we can use cdn approach or install it using npm.
+when using cdn we copy the cdn inside the index.html file.
 Data Binding
 ============
 1. one way data binding:
     a. ts file to html file(view)
         {{}} - string interpolation, to pass data from ts to html.
+    b. property bindin:
         [attribute] = value, called property binding. 
             eg:<img [src] = "imagePath"/>
-    b. event binding : from html file to css file 
+    c. event binding : from html file to css file 
         syntax : (event)="method"
         eg: <button (click)="showName()">SHOW</button> 
             in the ts file we can define showName() method inside the component class. like:
@@ -84,6 +88,69 @@ Data Binding
         to initialize an empty string array.
 
         We can use "any" type to declare a variable of any type.
-        
+        The (change) event is triggered when we press enter or when we change the focus of the input
+        after entering the value.
+
+        The $event object contains the details of the event. from this we extract the value in the ts file.
+        eg:
+            <input type="text" class="form-control w-25" placeholder="user name" (change)="getUserName($event)"/> 
+
+        in the ts file we can define : 
+        export class EmployeeDetailsComponent {
+        getUserName(data:any){
+            console.log(data.target.value);
+        }
+        }
+
+        The keyup method is triggered when ever the user presses a key.
+
+    d. using template literals:
+        We can use #variable-name to refer to the element in the html file. We can pass the variable name to a 
+        function in the ts file.
+
+        <input type="text" #location class="form-control w-25 mb-3" placeholder="location"/>
+        <button class="btn btn-primary mb-3" (click)="getLocation(location)">Send location</button>
+
+        in the ts file :
+        getLocation(location:any){
+            alert(location.value)
+        }
+        // note that we don't need to use the target because we are not taking the value from event.
+
 
 2. two way data binding:
+- if we change the value of a component in the ts file of the component, it will reflect in the 
+ view of the component.html file also. also, if we change the value in the view of the component.html file,
+     it will reflect in the ts file of the component.
+- we use [(ngModel)] for two way data binding.
+- if we want to use ngModel we need to import FormsModule in app.module.ts file.
+- if we use ngModel in any html element we need to declare name attribute also for that html element.
+- no need to provide same value for name attribute and ngModel.
+
+Place the FormsModule in the imports array of the app.module.ts file.
+eg:
+  <div class="row mt-2">
+    <div class="col-md-6">
+      <input [(ngModel)]="empSalary" type="text" class="form-control w-75" name="salary" placeholder="Salary">
+      <input 
+      [(ngModel)]="location"
+      type="text" name="location" class="form-control w-75 mt-3" placeholder="Location">
+      <button class="btn btn-primary form-control w-75 mt-3" (click)="getData()">Change</button>
+    </div>
+  </div>
+
+  in the ts file:
+  empSalary = 15000
+  location = "Kochi"
+    getData(){
+        alert(`Employee salary is : ${this.empSalary}, Employee Location is : ${this.location}`);
+    }
+
+Here as you can see we are not passing the value with the event.
+remember to use this keyword to access the property of the component inside a function.
+
+
+
+
+
+
