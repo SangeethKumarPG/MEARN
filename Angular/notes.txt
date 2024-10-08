@@ -150,6 +150,87 @@ Here as you can see we are not passing the value with the event.
 remember to use this keyword to access the property of the component inside a function.
 
 
+Routing
+=======
+Angular provides inbuilt ways for routing.
+- We need to edit the routes in app-routing.module.ts file.
+- For each route create an object with path and component properties.
+eg:
+const routes: Routes = [
+  {
+    path: 'register', component:RegisterComponent
+  },
+  {
+    path:'login', component:LoginComponent
+  },
+  {
+    path:'dashboard', component:DashboardComponent
+  }
+];
+
+After this provide the <touter-outlet> tag in the app.component.html file.
+eg:
+<router-outlet></router-outlet>
+<app-register></app-register>
+
+Note that we don't need to wrap the router-outet tag with other components. Also make sure that
+it is created in the root component which is the app.component.html file here.
+
+to navgate to the link use the routerLink directive with the path.
+eg:
+<a routerLink="/register">Register</a>
+
+To navigate from typescript file we first need to add Router service to our component. We can only navigate with 
+this router dependency. We can use constructor injection to inject the Router service.
+eg:
+constructor(private authRouter:Router){}
+login(){
+    this.authRouter.navigateByUrl('/dashboard');
+}
+
+We specify the access modifier and the object name of type Router.
+inside the function to navigate we use navigateByUrl method of the Router service.
+
+Dependency injection
+--------------------
+Dependency injection is used to share data between classes or services.
+The data can be methods, properties etc.
+Dependency injection is done inside the constructor.
+syntax:
+constructor(access-specifier variable-name:DependencyClass){}
+
+access-specifier: public, private, protected
+variable-name: the name of the variable which will hold the instance of the dependency class.
+DependencyClass: the class which we want to inject.
+
+Services:
+---------
+Used to share properties or methods between multiple components.
+Services are also classes that contains methods and properties.
+
+To create a service we can use the angular cli command:
+ng generate service <service-name>
+or
+ng g s <service-name>
+
+after the service file is created we can define additional properties or methods in it.
+To use a service in a component we pass the service as a parameter in the constructor, and access the required
+property or method using this keyword.
+
+Directives:
+-----------
+Directives are used to give conditional behaviours to the html dom.
+3 types of directives:
+
+1. Component Directive : 
+    component itself is a directive. by using it's selector we can bind that component anywhere.
+2. Structural Directive:
+    It changes the structure of the html dom by adding or removing elements to the dom.
+    used to provide conditional rendering.
+    eg:
+        *ngIf, *ngFor
+3. Attribute Directive:
+    To change the appearance of an html element.
 
 
 
