@@ -231,7 +231,103 @@ Directives are used to give conditional behaviours to the html dom.
         *ngIf, *ngFor
 3. Attribute Directive:
     To change the appearance of an html element.
+    eg:[ngClass]
 
+Structural Diretives:
+---------------------
+1. *ngIf:
+    It is used to show or hide an element based on a condition.
+    syntax:
+    <div *ngIf="condition">
+        // content to be shown
+    </div>
+    eg:
+    <div *ngIf="show">
+        <p>This is shown</p>
+    </div>
+    <div *ngIf="!show">
+        <p>This is hidden</p>
+    </div>
+    Note that show variable is a boolean variable decalred in the ts file.
 
+2. *ngFor:
+    It is used to iterate over an array and display the elements in the dom.
+    syntax:
+    <div *ngFor="let item of items">
+        // content to be shown
+    </div>
+    eg:
+    userDetails:any = [
+    {
+      name:"Todd",
+      designation:"Manager",
+      location:"Kochi"
+    },
+    {
+      name:"Sean",
+      designation:"Team Lead",
+      location:"TVM"
+    },
+    {
+      name:"Clara",
+      designation:"Senior SE",
+      location:"Kochi"
+    },
+    {
+      name:"Kenneth",
+      designation:"Tester",
+      location:"TVM"
+    },
+  ]
+  in the html file:
+  <table class="table mt-5 shadow w-50">
+    <thead class="p-4">
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Location</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of userDetails; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.designation}}</td>
+            <td>{{user.location}}</td>
+        </tr>
+
+    </tbody>
+</table>
+
+Attribute Directives:
+---------------------
+1. ngClass:
+    It is used to add or remove a class to an element based on a condition.
+    syntax:
+    [ngClass]="'class1 class2'"
+    [ngClass]="{'class1':condition1, 'class2':condition2}"
+    [ngClass]="{'class1':condition1, 'class2':condition2, 'class3':condition3}"
+    eg:
+    <div [ngClass]="{'active':isActive}">
+        <p>This is active</p>
+    </div>
+    <div [ngClass]="{'inactive':!isActive}">
+        <p>This is inactive</p>
+    </div>
+    Note that isActive variable is a boolean variable decalred in the ts file.
+    another example:
+    <h3 class="m-5" [ngClass]="{'change_red':changeColor, 'change_green':!changeColor}">Angular</h3>
+    <div>
+        <button class="btn btn-warning ms-5" (click)="changeColor=!changeColor">CHANGE</button>
+    </div>
+    Note that changeColor variable is a boolean variable decalred in the ts file. it's initial value is false.
+    The classes change_red and change_green are defined in the css file of the component.
+
+    We can use (ngSubmit) to bind a function to the form submit event.
+    syntax:
+    <form (ngSubmit)="functionToHandleFormSubmit()">
+        // form elements
+    </form>
 
 

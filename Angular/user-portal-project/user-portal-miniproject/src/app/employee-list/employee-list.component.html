@@ -1,0 +1,52 @@
+<div class="d-flex">
+  <app-sidebar></app-sidebar>
+  <div class="dashboard p-3 w-100">
+    <div class="d-flex justify-content-between mt-3">
+      <h3>EMPLOYEE LIST</h3>
+      <a href="" class="btn btn-outline-secondary" style="text-decoration: none"
+      routerLink="/employee/add"
+        ><img src="assets/add-user.svg" class="me-2" />ADD EMPLOYEE</a
+      >
+    </div>
+    <div class="d-flex align-items-center justify-content-center flex-column mt-5">
+        <div class="d-flex justify-content-between w-100">
+            <div class="d-flex w-75">
+                <input type="text" placeholder="User name" class="form-control"/>
+                <div class="dropdown ms-3">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      SORT
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><a class="dropdown-item">ID</a></li>
+                      <li><a class="dropdown-item">User name</a></li>
+                    </ul>
+                  </div>
+            </div>
+            <button class="btn btn-primary">EXPORT</button>
+        </div>
+        <table class="table table-bordered border-primary shadow mt-5 rounded">
+            <thead>
+                <tr class="p-4 text-center table-active">
+                    <th>Employee ID</th>
+                    <th>User name</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="text-center">
+                    <td>1</td>
+                    <td>Neel</td>
+                    <td>neel@gmail.com</td>
+                    <td>Active</td>
+                    <td>
+                        <a class="btn btn-outline-primary me-2"><img src="assets/edit-icon.svg"/></a>
+                        <a class="btn btn-outline-danger ms-2"><img src="assets/trash.svg" /></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  </div>
+</div>

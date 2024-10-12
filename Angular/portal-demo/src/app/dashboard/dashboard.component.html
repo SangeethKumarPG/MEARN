@@ -2,3 +2,33 @@
 <h6>Employee Name : {{password}}</h6>
 <h6>Employee Email : {{email}}</h6>
 <button class="btn btn-info" (click)="backToHome()">Back to home</button>
+
+<h4 class="text-warning mt-5" *ngIf="showText">Hello World</h4>
+<div class="mt-3">
+    <button class="btn btn-primary" (click)="changeValue()">Display Text</button>
+</div>
+
+<table class="table mt-5 shadow w-50">
+    <thead class="p-4">
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Location</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of userDetails; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.designation}}</td>
+            <td>{{user.location}}</td>
+        </tr>
+
+    </tbody>
+</table>
+
+<h3 class="m-5" [ngClass]="{'change_red':changeColor, 'change_green':!changeColor}">Angular</h3>
+<div>
+    <button class="btn btn-warning ms-5" (click)="changeColor=!changeColor">CHANGE</button>
+</div>

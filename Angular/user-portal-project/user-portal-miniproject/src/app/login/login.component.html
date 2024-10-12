@@ -1,0 +1,30 @@
+<div
+  class="row w-100 mt-5 d-flex justify-content-center align-items-center"
+  style="height: 70vh"
+>
+  <div class="col-md-1"></div>
+  <div class="col-md-5">
+    <img
+      src="https://media.istockphoto.com/id/1281150061/vector/register-account-submit-access-login-password-username-internet-online-website-concept.jpg?s=612x612&w=0&k=20&c=9HWSuA9IaU4o-CK6fALBS5eaO1ubnsM08EOYwgbwGBo="
+      style="height: 400px"
+      alt="logo"
+    />
+  </div>
+  <div class="col-md-5">
+    <form class="mt-3 border shadow p-3 rounded" (ngSubmit)="login()">
+        <h3 class="text-center" style="color:#2a7474">Login</h3>
+        
+            <div>
+                <input type="email" placeholder="Email" class="form-control mb-2" [(ngModel)]="empEmail" name="email">
+            </div>
+            <div>
+                <input type="password" name="pwd" id="" [(ngModel)]="empPassword" placeholder="Password" class="form-control mb-2 mt-1">
+            </div>
+            <button class="btn btn-primary btn-block mb-2 form-control mt-2">LOGIN</button>
+        
+       
+
+    </form>
+  </div>
+  <div class="col-md-1"></div>
+</div>

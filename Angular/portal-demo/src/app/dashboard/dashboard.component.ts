@@ -10,6 +10,30 @@ import { DataService } from '../data.service';
 export class DashboardComponent {
   email:string = "";
   password:string = "";
+  showText:boolean = false;
+  changeColor:boolean = false;
+  userDetails:any = [
+    {
+      name:"Todd",
+      designation:"Manager",
+      location:"Kochi"
+    },
+    {
+      name:"Sean",
+      designation:"Team Lead",
+      location:"TVM"
+    },
+    {
+      name:"Clara",
+      designation:"Senior SE",
+      location:"Kochi"
+    },
+    {
+      name:"Kenneth",
+      designation:"Tester",
+      location:"TVM"
+    },
+  ]
   constructor(private homeRouter: Router, private dataService:DataService){
     this.email = this.dataService.email;
     this.password = this.dataService.password;
@@ -17,5 +41,8 @@ export class DashboardComponent {
   backToHome() {
     this.dataService.demoAlert();
     this.homeRouter.navigateByUrl('');
+  }
+  changeValue(){
+    this.showText = !this.showText; 
   }
 }
