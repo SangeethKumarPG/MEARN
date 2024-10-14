@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./employee-add.component.css']
 })
 export class EmployeeAddComponent {
-
+  employee:any={
+    id:'',
+    username:'',
+    email:'',
+    status:1,
+  }
+  clearFields(){
+    this.employee={
+      status:1
+    }
+  }
 }

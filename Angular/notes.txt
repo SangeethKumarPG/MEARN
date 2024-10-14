@@ -330,4 +330,122 @@ Attribute Directives:
         // form elements
     </form>
 
+For creating alerts we use a npm module called sweetalerts2.
+use the npm install command to install sweetalerts2.
+
+import Swal from 'sweetalert2';
+Swal.fire({
+        title: "Login Success!",
+        text: "You have successfully logged in!",
+        icon: "success"
+      });
+to create a toast.
+
+
+Dealing with Asynchronous Operation in Angular
+==============================================
+Observables and promises are used to handle asynchronous operations in Angular.
+Observables can handle multiple requests at a time, but promises can handle only one request at a time.
+Observables continously check weather the data is coming or not.
+In promise we get the result in .then() method.
+For the observables we use the subscribe() method to get the result.
+There are 2 main states,
+next - when the data is available
+error - when there is an error
+eg:
+    this.adminService.adminAuthorize().subscribe({
+        next:(res:any)=>{
+          console.log("Login success")
+        },
+        error:(error:any)=>{
+          console.log("Login failed")
+        }
+    })
+
+To implemet the login fnuctionality we need to connect to the backend server and check the credentials.
+To do this we need to create a service for that.
+
+To create a service we can use the angular cli command:
+ng generate service <service-name>
+
+if we want the service to be created in a particularfolder we can navigate to the folder we  want from the terminal and use the command.
+
+eg:
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AdminApiService {
+
+  constructor(private httpClient: HttpClient) {}
+  server_url = "http://localhost:3000"
+  
+  adminAuthorize(){
+     return this.httpClient.get(`${this.server_url}/employee/1`);
+  }
+}
+
+NOTE: we need to add the HttpClientModule in the app.module.ts file.
+
+In the above code we are using the HttpClient to make a get request to the server.
+we must return someting from the function so that we can subscribe to it.
+
+in the login component we can use the adminService to check the credentials.
+eg:
+import { Component } from '@angular/core';
+import Swal from'sweetalert2';
+import { AdminApiService } from '../services/admin-api.service';
+import { Router } from '@angular/router';
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+})
+export class LoginComponent {
+  empEmail:string = "";
+  empPassword:string = "";
+  constructor(private adminService: AdminApiService, private router:Router){}
+  login(){
+    if(!this.empEmail || !this.empPassword){
+      Swal.fire({
+        title: "Oops!",
+        text: "Please fill the form completely",
+        icon: "error"
+      });
+    }else{
+      this.adminService.adminAuthorize().subscribe({
+        next:(res:any)=>{
+          console.log("Login success")
+          const {email, password} = res;
+          // console.log(res);
+          if(email === this.empEmail && password === this.empPassword){
+            Swal.fire({
+              title: "Login Success!",
+              text: "You have successfully logged in!",
+              icon: "success"
+            });
+            this.router.navigateByUrl("/dashboard")
+          }else{
+            Swal.fire({
+              title:"Incorrect Email or Password",
+              text: "Please try again with correct credentials",
+              icon: "error"
+            })
+          }
+        },
+        error:(error:any)=>{
+          console.log("Login failed")
+        }
+      })
+    }
+  }
+}
+In the above code we are checking the credentials in the login function.
+if the credentials are correct we are navigating to the dashboard page.
+if the credentials are incorrect we are showing an error message.
+
+We are using the observables to handle the asynchronous operation here.
+
 

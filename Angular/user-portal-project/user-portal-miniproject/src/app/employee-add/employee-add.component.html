@@ -5,18 +5,19 @@
   >
     <h3>ADD NEW EMPLOYEE</h3>
     <form action="" class="border rounded-3 p-5 shadow mt-5 w-75">
-      <input type="text" class="form-control mb-3" placeholder="Employee ID" />
-      <input type="text" class="form-control mb-3" placeholder="Employee Email" />
-      <input type="text" class="form-control mb-3" placeholder="Employee User Name" />
+      <input type="text" class="form-control mb-3" placeholder="Employee ID" [(ngModel)]="employee.id" name="emp_id"/>
+      <input type="text" class="form-control mb-3" placeholder="Employee Email" [(ngModel)]="employee.email" name="emp_email"/>
+      <input type="text" class="form-control mb-3" placeholder="Employee User Name" [(ngModel)]="employee.username" name="emp_username"/>
       <div class="form-floating mb-3">
-        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+        <select class="form-select" id="floatingSelect" aria-label="Floating label select example" 
+        [(ngModel)]="employee.status" name="emp_status">
           <option value="1">ACTIVE</option>
-          <option value="2">INACTIVE</option>
+          <option value="0">INACTIVE</option>
         </select>
         <label for="floatingSelect">Employee Status</label>
       </div>
       <div class="d-flex justify-content-center align-space-between">
-        <button class="btn btn-warning mb-3 w-50">CANCEL</button>
+        <button class="btn btn-warning mb-3 w-50"(click)="clearFields()">CLEAR</button>
         <button class="btn btn-success mb-3 ms-3 w-50">ADD</button>
       </div>
 
