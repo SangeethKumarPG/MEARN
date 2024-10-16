@@ -1,11 +1,41 @@
 {
-    "employee":[
-        {
-            "id":1,
-            "name":"Admin",
-            "email":"admin@example.com",
-            "password":"password",
-            "status":1
-        }
-    ]
+  "employee": [
+    {
+      "id": 1,
+      "name": "Admin",
+      "email": "admin@example.com",
+      "password": "password",
+      "status": 1
+    },
+    {
+      "id": 8,
+      "username": "John",
+      "email": "john@gmail.com",
+      "status": 1
+    },
+    {
+      "id": 9,
+      "username": "Sasha",
+      "email": "sasha@gmail.com",
+      "status": 1
+    },
+    {
+      "id": 10,
+      "username": "Mike",
+      "email": "mike@example.com",
+      "status": 1
+    },
+    {
+      "id": 12,
+      "username": "Abel",
+      "email": "abel@gmail.com",
+      "status": 1
+    },
+    {
+      "id": 6,
+      "username": "Luke",
+      "email": "luke@gmail.com",
+      "status": 1
+    }
+  ]
 }

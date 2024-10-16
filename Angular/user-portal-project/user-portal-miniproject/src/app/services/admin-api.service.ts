@@ -12,4 +12,5 @@ export class AdminApiService {
   adminAuthorize(){
      return this.httpClient.get(`${this.server_url}/employee/1`);
   }
+
 }

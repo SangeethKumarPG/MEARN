@@ -12,6 +12,7 @@ import { EmployeeEditComponent } from './employee-edit/employee-edit.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { SearchPipe } from './search.pipe';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {HttpClientModule} from '@angular/common/http';
     EmployeeListComponent,
     EmployeeAddComponent,
     EmployeeEditComponent,
-    SidebarComponent
+    SidebarComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

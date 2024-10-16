@@ -17,8 +17,8 @@
                       SORT
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                      <li><a class="dropdown-item">ID</a></li>
-                      <li><a class="dropdown-item">User name</a></li>
+                      <li><a class="dropdown-item" (click)="sortById()">ID</a></li>
+                      <li><a class="dropdown-item"  (click) = "sortByName()">User name</a></li>
                     </ul>
                   </div>
             </div>
@@ -35,14 +35,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="text-center">
-                    <td>1</td>
-                    <td>Neel</td>
-                    <td>neel@gmail.com</td>
-                    <td>Active</td>
+                <tr class="text-center" *ngFor="let employee of allEmployeesList" [hidden]="employee.id === 1">
+                    <td>{{employee.id}}</td>
+                    <td>{{employee.username}}</td>
+                    <td>{{employee.email}}</td>
+                    <td><span [ngClass]="employee.status == 0 ? 'btn btn-warning' : 'btn btn-success btn_active'">
+                      {{employee.status == 0 ? 'Inactive' : 'Active'}}
+                    </span></td>
                     <td>
-                        <a class="btn btn-outline-primary me-2"><img src="assets/edit-icon.svg"/></a>
-                        <a class="btn btn-outline-danger ms-2"><img src="assets/trash.svg" /></a>
+                        <a class="btn btn-outline-primary me-2" routerLink="/employee/edit/{{employee.id}}"><img src="assets/edit-icon.svg"/></a>
+                        <a class="btn btn-outline-danger ms-2"  (click)="deleteEmployee(employee.id)"><img src="assets/trash.svg" /></a>
                     </td>
                 </tr>
             </tbody>

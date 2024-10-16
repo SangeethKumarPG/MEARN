@@ -124,7 +124,7 @@ Data Binding
      it will reflect in the ts file of the component.
 - we use [(ngModel)] for two way data binding.
 - if we want to use ngModel we need to import FormsModule in app.module.ts file.
-- if we use ngModel in any html element we need to declare name attribute also for that html element.
+- if we use ngModel in any html element we need to declare name attribute also for that html element.[Important]
 - no need to provide same value for name attribute and ngModel.
 
 Place the FormsModule in the imports array of the app.module.ts file.
@@ -448,4 +448,68 @@ if the credentials are incorrect we are showing an error message.
 
 We are using the observables to handle the asynchronous operation here.
 
+Angular  LifeCycle Hooks:
+=========================
+From creation of a component to its destruction, there are differrent stages,
+Note that before these hooks are called the constructor is called.
+1. ngOnchanges: It is called when the input properties of the component changes.
+2. ngOnInit: It is called after the component is initialized.
+3. ngDoCheck: It is called every time the component's input properties are checked.
+4. ngAfterContentInit: It is called after the content of the component is initialized.
+5. ngAfterContentChecked: It is called every time the content of the component is checked.
+6. ngAfterViewInit: It is called after the component's view is initialized.
+7. ngAfterViewChecked: It is called every time the component's view is checked.
+8. ngOnDestroy: It is called when the component is destroyed.
 
+Are the life cycle hooks of Angular.
+
+The ngOnInit() hook is used to initialize the component. It works similar to useEffect() hook in React.
+to utilize this we need to implement the OnInit interface in the component class. and provide the implementation of the ngOnInit() method.
+
+The [hidden] attribute is used to hide an element from the dom. we can place a condition upon which the component is hidden.
+
+The ActivatedRoute class is used to get the URL params from the current path.
+eg:
+export class EmployeeEditComponent implements OnInit{
+  // ActivatedRoute class is used to extract params from the URL path
+  constructor(private route:ActivatedRoute) { }
+
+  ngOnInit(): void {
+    this.route.params.subscribe(
+      (res:any)=>{
+        console.log(res);
+      }
+    )
+  }
+
+we need to use subscribe to get the params.
+
+Angular Pipes:
+==============
+Angular pipes are small functions or methods that can be used in the template. It will accept an input value and 
+transform it into a new value.
+Pipes are used to transform strings, currencies, dates etc.
+2 types:
+1. custom pipes: created by user.
+2. Default pipes: provided by Angular.
+
+Pipes are applied by | symbol(pipe symbol) in the template.
+
+eg: {{employee.name | uppercase}}
+similarly we can use lowercase 
+to convert the string to upper and lowercase.
+Similarly there is titlecase pipe to convert the first letter of each word to uppercase.
+
+For currency symbols
+{{amount | currency:'INR','symbol'}} - the symbol is optional. But it can be used to customize the currency symbol.
+
+for date formatting
+{{date | date:'dd-MM-yyyy'}} - this will format the date to dd-MM-yyyy format.
+
+We can create custom pipes by using the angular cli
+ng generate pipe <pipe-name>
+or
+ng g p <pipe-name>
+
+NOTE:
+In angular we can create components, pipes and services in any folder.
