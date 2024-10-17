@@ -23,7 +23,8 @@ export class EmployeeAddComponent {
     }
   }
   addEmployee(){
-    if (this.employee.username == '' || this.employee.email == ''|| this.employee.id == '' || this.employee.status == ''){
+    if (!this.employee.username || !this.employee.email || !this.employee.id || !this.employee.status)
+    {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',

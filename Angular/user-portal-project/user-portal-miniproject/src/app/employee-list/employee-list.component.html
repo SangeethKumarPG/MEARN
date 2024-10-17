@@ -11,7 +11,7 @@
     <div class="d-flex align-items-center justify-content-center flex-column mt-5">
         <div class="d-flex justify-content-between w-100">
             <div class="d-flex w-75">
-                <input type="text" placeholder="User name" class="form-control"/>
+                <input type="text" placeholder="User name" class="form-control" [(ngModel)]="searchKey" name="searchKey"/>
                 <div class="dropdown ms-3">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                       SORT
@@ -22,7 +22,7 @@
                     </ul>
                   </div>
             </div>
-            <button class="btn btn-primary">EXPORT</button>
+            <button class="btn btn-primary" (click)="generatePDF()">EXPORT</button>
         </div>
         <table class="table table-bordered border-primary shadow mt-5 rounded">
             <thead>
@@ -35,7 +35,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="text-center" *ngFor="let employee of allEmployeesList" [hidden]="employee.id === 1">
+                <tr class="text-center" *ngFor="let employee of allEmployeesList | search:searchKey | paginate:{itemsPerPage:5, currentPage:p}" [hidden]="employee.id === 1">
                     <td>{{employee.id}}</td>
                     <td>{{employee.username}}</td>
                     <td>{{employee.email}}</td>
@@ -49,6 +49,7 @@
                 </tr>
             </tbody>
         </table>
+        <pagination-controls (pageChange)="p=$event"></pagination-controls>
     </div>
   </div>
 </div>

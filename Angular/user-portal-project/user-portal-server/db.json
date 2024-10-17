@@ -2,7 +2,7 @@
   "employee": [
     {
       "id": 1,
-      "name": "Admin",
+      "username": "Admin",
       "email": "admin@example.com",
       "password": "password",
       "status": 1
@@ -23,7 +23,7 @@
       "id": 10,
       "username": "Mike",
       "email": "mike@example.com",
-      "status": 1
+      "status": 0
     },
     {
       "id": 12,

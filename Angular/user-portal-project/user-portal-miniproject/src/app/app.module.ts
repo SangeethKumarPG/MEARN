@@ -13,6 +13,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { SearchPipe } from './search.pipe';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { SearchPipe } from './search.pipe';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -513,3 +513,60 @@ ng g p <pipe-name>
 
 NOTE:
 In angular we can create components, pipes and services in any folder.
+
+After running the command it will create the pipename.pipe.ts file.
+We change the implementation of the transform method to transform the input value.
+The first argument is the input value on which transformation is to be applied.
+The second argument is the parameter which we need to perform some operation on the data.
+so the file will look something like:
+
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+  name: 'search'
+})
+export class SearchPipe implements PipeTransform {
+
+  // 1st argument is the item that need to be transformed
+  // 2nd argument determines the type of transformation
+  transform(employee: any[], searchKey: string): any[] {
+    console.log("Inside search pipe");
+    const result:any = [];
+    if(!employee || searchKey === ''){
+      return employee;
+    }
+
+      employee.forEach((item:any)=>{
+        if(item.username.trim().toLowerCase().includes(searchKey.trim().toLocaleLowerCase())){
+          result.push(item);
+        }
+      })
+    
+    return result;
+  }
+
+}
+
+in the template we can use like 
+<tbody>
+  <tr class="text-center" *ngFor="let employee of allEmployeesList | search:searchKey" [hidden]="employee.id === 1">
+      <td>{{employee.id}}</td>
+      <td>{{employee.username}}</td>
+      <td>{{employee.email}}</td>
+      <td><span [ngClass]="employee.status == 0 ? 'btn btn-warning' : 'btn btn-success btn_active'">
+        {{employee.status == 0 ? 'Inactive' : 'Active'}}
+      </span></td>
+      <td>
+          <a class="btn btn-outline-primary me-2" routerLink="/employee/edit/{{employee.id}}"><img src="assets/edit-icon.svg"/></a>
+          <a class="btn btn-outline-danger ms-2"  (click)="deleteEmployee(employee.id)"><img src="assets/trash.svg" /></a>
+      </td>
+  </tr>
+</tbody>
+
+Make sure that you define the return type of the transform method accordingly.
+
+jspdf autotable is a module used to generate pdf files in Angular.
+to instal it use :
+npm install jspdf jspdf-autotable
+
+For pagination we use ngx-pagination module npm package.
