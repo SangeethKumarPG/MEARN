@@ -570,3 +570,34 @@ to instal it use :
 npm install jspdf jspdf-autotable
 
 For pagination we use ngx-pagination module npm package.
+
+NOTE: When accessing the length of an array inside a observable function we need to specify the type of
+the argument of the function as any.
+eg:
+ this.empService.getAllEmployeesApi().subscribe({
+      next:(res:any)=>{
+        this.employeeCount = res.length-1;
+
+      },
+      error:(err)=>{
+        console.log(err);
+      }
+    })
+
+Angular Material
+================
+to install we must use the following command:
+ng add @angular/material
+
+and not npm install.
+
+Angular Material is a UI component library for Angular. It provides a set of reusable and accessible UI components.
+
+To implement the widgets visit the angular material website.
+Choose widget you need and paste the ts code in the app.module.ts file inside the imports array.
+
+For charts in angular we need to install a module called highcharts.
+
+for this we need to use the following command:
+npm install highcharts
+npm install highcharts-angular
