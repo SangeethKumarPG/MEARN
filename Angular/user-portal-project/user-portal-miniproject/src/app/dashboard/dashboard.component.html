@@ -1,38 +1,84 @@
 <div class="d-flex">
-    <app-sidebar></app-sidebar>
-    <div class="dashboard p-3 w-100" style="height: 80vh;">
+  <app-sidebar></app-sidebar>
+  <div class="dashboard p-3 w-100" style="height: 80vh">
+    <div class="row w-100">
+      <div class="col-md-8">
         <div class="row w-100">
-            <div class="col-md-8">
-                <div class="row w-100">
-                    <div class="col-md-12 rounded d-flex align-items-center"
-                    style="background-color: aquamarine; height:5rem"
-                    >
-                        <h4>Welcome Admin!</h4>
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-md-6">
-                        <h4>Calendar</h4>
-                        <mat-card class="demo-inline-calendar-card">
-                            <mat-calendar [(selected)]="selected"></mat-calendar>
-                          </mat-card>
-                    </div>
-                    <div class="col-md-6">
-                        <h4>chart</h4>
-                        <app-charts></app-charts>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div style="height:20rem; background-color: aquamarine;" class="rounded text-center">
-                    <h4>ADMIN PROFILE</h4>
-                </div>
-                <div class="mt-3 d-flex align-items-center justify-content-center rounded" style="height:10rem; background-color: bisque;">
-                   
-                        <h4><img src="assets/users-icon.svg"/> USER COUNT : {{employeeCount}}</h4>
-                   
-                </div>
-            </div>
+          <div
+            class="col-md-12 rounded d-flex align-items-center"
+            style="background-color: aquamarine; height: 5rem"
+          >
+            <h4>Welcome {{adminName}}</h4>
+          </div>
         </div>
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <h4>Calendar</h4>
+            <mat-card class="demo-inline-calendar-card">
+              <mat-calendar [(selected)]="selected"></mat-calendar>
+            </mat-card>
+          </div>
+          <div class="col-md-6">
+            <h4>chart</h4>
+            <app-charts></app-charts>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div
+          style="height: 20rem; background-color: aquamarine"
+          class="rounded text-center d-flex flex-column align-items-center justify-content-center"
+        >
+          <img
+            [src]="profileImage"
+            style="width: 5rem; height: 5rem"
+            *ngIf="!editAdminStatus"
+          />
+          <button
+            class="btn btn-outline-secondary ml-3"
+            (click)="editAdminDetails()"
+          >
+            EDIT ADMIN DETAILS<img src="assets/edit-icon.svg" />
+          </button>
+          <div
+            class="d-flex flex-column align-items-center justify-content-center mt-1"
+            *ngIf="editAdminStatus"
+          >
+            <h3>UPDATE ADMIN DETAILS</h3>
+            <label for="profilePic">
+                <input type="file" name="" id="profilePic" style="display: none;" (change)="getFile($event)">
+                <img [src]="profileImage" style="width: 5rem; height: 5rem" />
+            </label>
+            
+            <input
+              type="text"
+              placeholder="User name"
+              class="form-control mt-2"
+              [(ngModel)]="adminName"
+              name="adminName"
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              class="form-control mt-2"
+              [(ngModel)]="adminPassword"
+              name="adminPassword"
+            />
+            <div class="d-flex justify-content-between mt-2 w-100">
+              <button class="btn btn-outline-warning" (click)="cancelUpdate()">Cancel</button>
+              <button class="btn btn-outline-success" (click)="updateAdmin()">Update</button>
+            </div>
+          </div>
+        </div>
+        <div
+          class="mt-3 d-flex align-items-center justify-content-center rounded"
+          style="height: 10rem; background-color: bisque"
+        >
+          <h4>
+            <img src="assets/users-icon.svg" /> USER COUNT : {{ employeeCount }}
+          </h4>
+        </div>
+      </div>
     </div>
+  </div>
 </div>

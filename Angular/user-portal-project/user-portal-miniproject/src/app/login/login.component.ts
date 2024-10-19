@@ -25,6 +25,8 @@ export class LoginComponent {
           const {email, password} = res;
           // console.log(res);
           if(email === this.empEmail && password === this.empPassword){
+            sessionStorage.setItem("username", res.username);
+            sessionStorage.setItem("password",res.password);
             Swal.fire({
               title: "Login Success!",
               text: "You have successfully logged in!",

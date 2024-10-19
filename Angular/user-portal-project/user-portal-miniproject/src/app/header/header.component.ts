@@ -10,6 +10,8 @@ export class HeaderComponent {
 
   constructor(private router: Router) { }
   logout(){
+    sessionStorage.removeItem("username");
+    sessionStorage.removeItem("password");
     this.router.navigateByUrl("");
   }
 }
