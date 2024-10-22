@@ -3,6 +3,7 @@
     {
       "username": "AdminNew",
       "password": "password",
+      "email":"admin@gmail.com",
       "profileImage": "assets/user-pic-new.png",
       "id": 1
     },

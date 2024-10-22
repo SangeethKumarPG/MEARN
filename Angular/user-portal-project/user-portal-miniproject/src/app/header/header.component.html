@@ -4,7 +4,7 @@
         <img src="assets/users-icon.svg" class="me-3"/>
         EMPLOYEE PORTAL
       </a>
-      <button class="btn" (click)="logout()">
+      <button *ngIf="isLoggedIn" class="btn" (click)="logout()">
         <img src="assets/power--icon.svg"/>
       </button>
     </div>

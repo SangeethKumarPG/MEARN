@@ -601,3 +601,89 @@ For charts in angular we need to install a module called highcharts.
 for this we need to use the following command:
 npm install highcharts
 npm install highcharts-angular
+
+Subject and BehaviourSubject
+============================
+They are used to send data between components.
+- for behaviour subjects there must be a value initially.
+- for subjects there is no initial value.
+- we are creating these in service.ts file.
+- then we can subscribe to this subject/behaviour subject in the component wherever we need.
+
+The syntax is same for both.
+
+eg:
+//creating a behavious subject to share data between components
+  public sharedData = new BehaviorSubject(false);
+  // create a function to upadte the shared data
+  updateSharedData(data:any){
+    this.sharedData.next(data);
+  }
+
+to update the data we need to use
+this.adminService.updateSharedData(true);
+
+to access this data in the component:
+
+sLoggedIn = false;
+  constructor(private router: Router, private adminService : AdminApiService) {
+    this.adminService.sharedData.subscribe((data)=>{
+      this.isLoggedIn = data;
+    })
+   }
+note that once we refresh the page the data will be lost.
+
+Guards
+======
+Angular guards are commonly used to restrict access to certain routes in the application.
+i.e we can use guards to check if the user is authenticated or not. or if a user has the required permission to access a particular route.
+
+Guard is like a normal function, so we cannot define constructors into this. so for this we use inject() method.
+
+in guard there are differrent methods:
+1. canActivate() 
+2. canActivateChild()
+3. canDeactivate()
+4. resolve()
+5. canLoad()
+
+We use the angular cli command to create a guard.
+i.e,
+ng generate guard <guard-name>
+or 
+ng g g <guard-name>
+
+when you run this command it will ask to create the type of guard you want, normally we use canActivate.
+adter this it will create a guard file with the given name.
+
+inside this guard file we can define the logic for the guard.
+To add other function to the guard to perform some function we need to use inject() method.
+eg:
+import { inject } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+
+export const authguardGuard: CanActivateFn = (route, state) => {
+  const authStatus = inject(AuthService);
+  const router = inject(Router);
+  if(authStatus.isLoggedIn()){
+    return true;
+  }else{
+    alert("Please login to access this page");
+    router.navigateByUrl('');
+    return false;
+  }
+  return true;
+};
+
+after this define the canActivate property in the app-routing.module.ts file.
+like:
+path:'dashboard', component:DashboardComponent, canActivate:[authguardGuard]
+
+
+NOTE : 
+======
+To create wildcard path inside the app-routing.module.ts file
+define 
+
+path:'**', component:NoPageFoundComponent.

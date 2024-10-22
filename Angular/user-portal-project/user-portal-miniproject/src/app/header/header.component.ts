@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AdminApiService } from '../services/admin-api.service';
 
 @Component({
   selector: 'app-header',
@@ -7,11 +8,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-
-  constructor(private router: Router) { }
+  isLoggedIn = false;
+  constructor(private router: Router, private adminService : AdminApiService) {
+    this.adminService.sharedData.subscribe((data)=>{
+      this.isLoggedIn = data;
+    })
+   }
   logout(){
     sessionStorage.removeItem("username");
     sessionStorage.removeItem("password");
     this.router.navigateByUrl("");
+    this.isLoggedIn = false;
   }
 }

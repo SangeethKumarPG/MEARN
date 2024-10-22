@@ -27,6 +27,7 @@ export class LoginComponent {
           if(email === this.empEmail && password === this.empPassword){
             sessionStorage.setItem("username", res.username);
             sessionStorage.setItem("password",res.password);
+            this.adminService.updateSharedData(true);
             Swal.fire({
               title: "Login Success!",
               text: "You have successfully logged in!",
