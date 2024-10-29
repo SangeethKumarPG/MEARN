@@ -1,1 +1,49 @@
-<p>all-product works!</p>
+<div id="carouselExampleInterval" class="carousel slide" data-bs-pause="false" data-bs-ride="carousel" data-bs-interval="2000">
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="10000">
+        <img src="https://img.freepik.com/free-vector/black-friday-sale-poster-design-background_1017-16181.jpg" class="d-block w-100" alt="..." height="700px">
+      </div>
+      <div class="carousel-item" data-bs-interval="2000">
+        <img src="https://images.vexels.com/content/173327/preview/black-friday-sale-poster-set-0f3274.png" class="d-block w-100" alt="..." height="700px">
+      </div>
+      <div class="carousel-item">
+        <img src="https://img.freepik.com/premium-vector/online-shopping-poster-template_23-2148662146.jpg" class="d-block w-100" alt="..." height="700px">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="col mb-5" *ngFor="let item of products">
+                <div class="card h-100 p-3">
+                    <!-- Product image-->
+                    <img class="card-img-top" [src]="item.image" alt="..." height="250px" 
+                    routerLink="view-product/{{item.id}}"
+                    />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">{{item.title.slice(0,20)}}...</h5>
+                            <!-- Product price-->
+                            {{item.price|currency:'USD'}}
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                   <div class="d-flex justify-content-between">
+                        <a class="btn btn-outline-danger" (click)="addToWishList(item)"><i class="fa fa-solid fa-heart"></i></a>
+                        <a class="btn btn-outline-success" (click)="addToCart(item)"><i class="fa fa-solid fa-cart-shopping"></i></a>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

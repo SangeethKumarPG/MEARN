@@ -1,4 +1,5 @@
 const users = require("../Models/userModel");
+const jwt = require("jsonwebtoken");
 
 exports.registerController = async (req, res) => {
   try {
@@ -35,7 +36,10 @@ exports.loginController = async (req, res)=>{
     try{
         const user = await users.findOne({ email: email });
         if(user){
-            res.status(200).json(user);
+            if(user.password === password){
+              const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET_KEY);
+              res.status(200).json({token: token});
+            }
         }else{
            res.status(400).json("Invalid email or password");
         }

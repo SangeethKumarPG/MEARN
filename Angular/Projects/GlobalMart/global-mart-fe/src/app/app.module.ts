@@ -13,6 +13,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { CartComponent } from './cart/cart.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
