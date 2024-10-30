@@ -1,1 +1,35 @@
-<p>wishlist works!</p>
+<div>
+    <div *ngIf="allWishListItems.length === 0" class="d-flex justify-content-center align-items-center flex-column">
+        <img src="https://cdn-icons-png.flaticon.com/512/11329/11329060.png" alt="">
+        <h3 class="text-danger">Your wishlist is empty</h3>
+        <button class="btn text-success" routerLink="" style="font-weight: 800; text-decoration: underline;">Add items to your wishlist</button>
+    </div>
+    <div class="container px-4 mt-4">
+        <h3 class="text-danger text-center">Your wishlist items</h3>
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <div class="col mb-5" >
+                <div class="card h-100 p-3">
+                    <!-- Product image-->
+                    <img class="card-img-top" src="" alt="..." height="250px" 
+                    />
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder">Product name</h5>
+                            <!-- Product price-->
+                            <!-- {{item.price|currency:'USD'}} -->
+                             price
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                   <div class="d-flex justify-content-between">
+                        <a class="btn btn-outline-danger" ><i class="fa fa-solid fa-trash"></i></a>
+                        <a class="btn btn-outline-success"><i class="fa fa-solid fa-cart-shopping"></i></a>
+                   </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
