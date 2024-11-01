@@ -14,4 +14,8 @@ export class ApiService {
   getProductByIdAPI(id:any){
     return this.http.get(this.server_url+"/get-product/"+id);
   }
+
+  registerUserAPI(data:any){
+    return this.http.post(this.server_url+'/user-register',data);
+  }
 }

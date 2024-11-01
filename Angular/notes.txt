@@ -687,3 +687,68 @@ To create wildcard path inside the app-routing.module.ts file
 define 
 
 path:'**', component:NoPageFoundComponent.
+
+Two types of Forms in angular:
+==============================
+1. Template Driven Forms
+2. Reactive Forms
+
+The two forms handle user inputs and validations differretly.
+
+Template Driven Forms:
+----------------------
+-Are simple and relies more on two way data binding.
+-Form structures are vaildations are defined in the template(component.html).
+-It uses [(ngModel)] to get the data from the input field.
+eg:
+<form (submit)="onSubmit()">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" [(ngModel)]="name">
+  <button type="submit">Submit</button>
+</form>
+
+Reactive Forms
+--------------
+- also called model driven forms.
+- Form is created and managed directly in the component.ts file.
+- It uses angular's FormControl and FormBuilder for the creation of the form.
+- We have to import ReactiveForms module in the app.module.ts file.
+- key named formControlName is used to access the value of the input field.
+
+For implementing the reactive form we need to inject the FormBuilder as dependency in the constructor.
+After this we need to create the object of the form that we need.
+For this we need to call the group() method of the FormBuilder class.
+inside this method we pass a json object that contains the form fields and their validators.
+
+eg:
+ constructor(private formBuilder : FormBuilder){}
+  registerForm = this.formBuilder.group({
+    username:['', [Validators.required, Validators.pattern('[a-zA-Z]*')]],
+    email:['', [Validators.required]],
+    password:['', [Validators.required, Validators.pattern('[a-zA-Z0-9]*')]]
+  })
+
+NOTE: Validators are passed as an array.
+
+after this put [formGroup]="registerForm" in the form tag.
+note that we still need to create the form structure in the template.
+
+After this give the formControlName to the fields in the template. this should be same as the key name in the form object.
+also we must define a name to the input field using the name attribute.
+
+To check ifthe form is valid we can check the valid property of the form object.
+eg:
+this.registerForm.valid
+
+To check the validty in the template we can use the ngIf directive.
+eg: 
+<span class="error-message" *ngIf="registerForm.get('username')?.errors && registerForm.get('username')?.touched">Invalid username</span>
+This will check for errors as the user types in the input field.
+Some times we need to click outside the input field to check the validity.
+
+We can disable the submit button if the form is invalid.
+by 
+<button type="submit" [disabled]="registerForm.invalid">Submit</button>
+
+To get the value of the form fields we can use the value property of the formControlName.
+const username = this.registerForm.value.username;
