@@ -22,15 +22,17 @@
         <div class="ms-auto navbar-nav">
             <div class="d-flex">
                 <a class="nav-link" routerLink="wishlist">
-                    <button class="btn btn-outline-light"><i class="fa-solid fa-heart fa-beat me-2"></i>Wishlist<span class="badge bg-secondary ms-1">5</span></button>
+                    <button class="btn btn-outline-light"><i class="fa-solid fa-heart fa-beat me-2"></i>Wishlist<span class="badge bg-secondary ms-1">{{wishListCount}}</span></button>
                 </a>
                 <a class="nav-link" routerLink = "cart">
                     <button class="btn btn-outline-light"><i class="fa-solid fa-cart-shopping fa-beat me-2"></i>Cart<span class="badge bg-secondary ms-1">3</span></button>
                 </a>
-                <a class="nav-link" routerLink="user/login">
+                <a class="nav-link" routerLink="user/login" *ngIf="!loginUserName">
                     <button class="btn btn-warning"><i class="fa-solid fa-power-off"></i>LOGIN</button>
                 </a>
-
+                <a class="nav-link" routerLink="user/login" *ngIf="loginUserName">
+                  <button class="btn btn-warning" (click)="logout()"><i class="fa-solid fa-power-off"></i>{{loginUserName}}</button>
+                </a>
             </div>
         </div>
       </div>

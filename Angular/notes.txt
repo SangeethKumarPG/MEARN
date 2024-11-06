@@ -632,6 +632,8 @@ sLoggedIn = false;
     })
    }
 note that once we refresh the page the data will be lost.
+For behaviour subject once a value is emitted it will keep emitting the same value until it is subscribed to.
+We can access this value from anywhere in the application. We just need to subscribe to the subject.
 
 Guards
 ======

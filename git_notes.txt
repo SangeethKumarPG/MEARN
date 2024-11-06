@@ -46,3 +46,15 @@ git pull --rebase
 this will show conflicts if present. 
 fix the conflicts by adding or removing files.
 git commit and push
+
+
+//Need to check?
+=======================To rollback to a remote version of the current repo=========================
+To rollback to a remote version of the current repo:
+
+1. git fetch origin
+2. git checkout origin/main
+3. git reset --hard origin/main
+4. git push origin main --force
+
+This will fetch the latest version of the main branch from the remote repository and reset the local repository to that version. It will then push the changes to the remote repository, overwriting any changes that may have been made since the last fetch.

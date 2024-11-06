@@ -38,7 +38,7 @@ exports.loginController = async (req, res)=>{
         if(user){
             if(user.password === password){
               const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET_KEY);
-              res.status(200).json({token: token});
+              res.status(200).json({token: token, existingUser:user});
             }
         }else{
            res.status(400).json("Invalid email or password");
