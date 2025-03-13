@@ -10,6 +10,7 @@ import { ApiService } from '../services/api.service';
 export class HeaderComponent implements OnInit{
   loginUserName:any = "";
   wishListCount = 0;  
+  cartCount = 0;
   constructor(private router:Router, private apiService:ApiService){}
   ngOnInit(): void {
     if(sessionStorage.getItem('username')){
@@ -17,6 +18,11 @@ export class HeaderComponent implements OnInit{
       this.loginUserName = sessionStorage.getItem('username');
       this.apiService.wishListCount.subscribe((res:any)=>{
         this.wishListCount = res;
+      })
+      this.apiService.getCartCountAPI();
+      this.apiService.cartCount.subscribe((res:any)=>{
+        console.log(res);
+        this.cartCount = res;
       })
     }else{
       this.loginUserName = "";

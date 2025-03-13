@@ -754,3 +754,6 @@ by
 
 To get the value of the form fields we can use the value property of the formControlName.
 const username = this.registerForm.value.username;
+
+@Input Decortator : used for component communication. [Refer more].
+@Output Decortator : used for component communication. [Refer more].

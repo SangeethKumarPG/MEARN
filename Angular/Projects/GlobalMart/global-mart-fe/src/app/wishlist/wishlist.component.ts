@@ -49,4 +49,26 @@ export class WishlistComponent implements OnInit {
     })
   }
 
+  addToCart(product:any){
+    Object.assign(product, {quantity: 1});
+    this.apiService.addToCartAPI(product).subscribe({
+      next:(res:any)=>{
+        this.apiService.getCartCountAPI();
+        Swal.fire({
+          icon:'success',
+          title: 'Product added to cart',
+          text: 'Product has been added to your cart'
+        })
+        this.deleteWishListItem(product._id);
+      },
+      error:(error:any)=>{
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Error in adding product to cart'
+        })
+      }
+    })
+  }
+
 }

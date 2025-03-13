@@ -62,6 +62,32 @@ export class AllProductComponent implements OnInit {
   }
 
   addToCart(product:any){
-    console.log(product);
+    if(sessionStorage.getItem('token')){
+      Object.assign(product, {quantity:1});
+      this.productService.addToCartAPI(product).subscribe({
+        next:(res:any)=>{
+          this.productService.getCartCountAPI();
+          Swal.fire({
+            icon:'success',
+            title:'Added to cart',
+            text: 'Product added to cart successfully'
+          })
+        },
+        error:(err:any)=>{
+          console.log("Add to cart error", err);
+          Swal.fire({
+            icon: 'error',
+            title:'Oops...',
+            text: `${err.error}`
+          });
+        }
+      })
+    }else{
+      Swal.fire({
+        icon:'warning',
+        title:'Oops...',
+        text: 'Please login to add product to cart'
+      });
+    }
   }
 }

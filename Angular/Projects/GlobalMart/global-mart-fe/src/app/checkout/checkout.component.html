@@ -1,1 +1,28 @@
-<p>checkout works!</p>
+<app-header></app-header>
+<div class="container-fluid d-flex justify-content-center align-items-center flex-column">
+    <h3 class="mt-5 text-danger mb-3">Delivery Details</h3>
+    <div class="row w-100">
+        <div class="col-md-6 d-flex justify-content-center">
+            <img width="80%"src="https://img.freepik.com/premium-vector/express-delivery-logo-shipping-services-flat-icon_186930-799.jpg"/>
+        </div>
+        <div class="col-md-5">
+            <form [formGroup]="checkoutForm" class="rounded shadow p-5 mt-5"> 
+                <input type="text" name="" id="" class="form-control my-2" placeholder="Enter your name">
+                <input type="text" name="" id="" class="form-control my-2" placeholder="House/Flat name">
+                <input type="text" name="" id="" class="form-control my-2" placeholder="Place">
+                <input type="text" name="" id="" class="form-control my-2" placeholder="Landmark">
+                <div class="d-flex justify-content-between mt-2" *ngIf="!makePayment">
+                    <button class="btn btn-warning">Cancel</button>
+                    <button class="btn btn-success" (click)="proceedPayment()">Proceed to Payment</button>
+                </div>
+                
+                <div *ngIf="makePayment">
+                    <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-1">
+
+        </div>
+    </div>
+</div>

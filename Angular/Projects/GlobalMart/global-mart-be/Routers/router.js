@@ -10,7 +10,11 @@ router.post('/add-to-wishlist', jwtMiddleWare,productController.addToWishList);
 router.get('/all-wishlist-items', jwtMiddleWare, productController.getAllWishListItems);
 router.delete('/remove-from-wishlist/:id', jwtMiddleWare, productController.removeItemFromWishList)
 
-router.post('/add-product-to-cart', jwtMiddleWare,)
-
+router.post('/add-product-to-cart', jwtMiddleWare, productController.addItemsToCart);
+router.get('/all-cart-items', jwtMiddleWare, productController.getAllCartItems);
+router.get('/increment-cart-quantity/:id', jwtMiddleWare, productController.incrementCartItemQuantity);
+router.get('/decrement-cart-quantity/:id', jwtMiddleWare, productController.decrementCartItemQuantity);
+router.delete('/empty-cart', jwtMiddleWare, productController.emptyCart);
+router.delete('/remove-cart-item/:id', jwtMiddleWare, productController.deleteCartItem);
 
 module.exports = router;

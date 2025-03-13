@@ -57,4 +57,38 @@ export class ApiService {
     })
   }
 
+  addToCartAPI(data:any){
+    return this.http.post(this.server_url+'/add-product-to-cart', data, this.addTokenToHeader());
+  }
+
+  getAllCartItemsAPI(){
+    return this.http.get(this.server_url+'/all-cart-items', this.addTokenToHeader());
+  }
+
+  //creating a behaviour subject to store the cart items count
+  cartCount = new BehaviorSubject(0);
+
+  getCartCountAPI(){
+    this.getAllCartItemsAPI().subscribe((res:any)=>{
+      // console.log(res.length);
+      this.cartCount.next(res.length)
+    })
+  }
+
+  incrementCartQuantityAPI(id:any){
+    return this.http.get(this.server_url+'/increment-cart-quantity/'+id, this.addTokenToHeader());
+  }
+
+  decrementCartQuantityAPI(id:any){
+    return this.http.get(this.server_url+'/decrement-cart-quantity/'+id, this.addTokenToHeader())
+  }
+
+  emptyCartAPI(){
+    return this.http.delete(this.server_url+'/empty-cart', this.addTokenToHeader());
+  }
+
+  deleteCartItemAPI(id:any){
+    return this.http.delete(this.server_url+'/remove-cart-item/'+id, this.addTokenToHeader());
+  }
+
 }
